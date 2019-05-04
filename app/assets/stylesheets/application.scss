@@ -28,7 +28,7 @@ h3,
 h4,
 h5,
 p {
-	font-family: "Roboto", sans-serif;
+	font-family: "Roboto", sans-serif !important;
 }
 
 a, a:link, a:visited, a:active{
@@ -61,6 +61,7 @@ a:hover{
 }
 
 .nav-item-link {
+	font-weight:600;
 	margin-left: 50px;
 	padding-bottom: 4px;
 	border-bottom: 3px solid $purple !important;
@@ -86,9 +87,8 @@ a:hover{
 	color: #999;
 	padding: 55px;
 	font-size: 0.8rem;
-	bottom: 0;
 	width: 100%;
-	margin-bottom: 0px;
+	position:relative;
 }
 
 .col:nth-child(1) {
