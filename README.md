@@ -1,7 +1,8 @@
 # PreLoved : A Ruby on Rails Two-Sided Marketplace
 
-Link to App
-Link to GitHub Repo: 
+Link to App: https://secret-mountain-45294.herokuapp.com/
+
+Link to GitHub Repo: https://github.com/rachelwong/music
 
 ***
 
