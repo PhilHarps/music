@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="myNav">
+  <a class="navbar-brand" href="/" style="font-size:2.8rem;"><i class="fas fa-drum"></i></a>
+  <a class="navbar-brand logo" href="/" style="font-size:1.6rem; margin-top:10px; margin-left: 5px;">Pre:L<span><i class="fas fa-heart" style="font-size: 17px"></i></span>ved</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to "About Us", pages_about_path, class: "nav-item-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Get in Touch", pages_contact_path, class: "nav-item-link" %>
+      </li>
+    </ul>
+    <ul class="navbar-nav justify-content-end">
+          <li class="nav-item">
+            <%= link_to "Sign Up", root_path, class: "nav-item-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log In", root_path, class: "nav-item-link" %>
+          </li>
+    </ul>
+  </div>
+</nav>
