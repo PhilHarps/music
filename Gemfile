@@ -66,3 +66,5 @@ gem "bootstrap", "~> 4.3"
 gem "jquery-rails", "~> 4.3"
 
 gem "font-awesome-rails", "~> 4.7"
+
+gem "devise", "~> 4.6"
