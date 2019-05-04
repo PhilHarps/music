@@ -1,24 +1,50 @@
-# README
+# PreLoved : A Ruby on Rails Two-Sided Marketplace
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Link to App
+Link to GitHub Repo: 
 
-Things you may want to cover:
+***
 
-* Ruby version
+## Problem Definition
+What is the motivation 
+***
 
-* System dependencies
+### Functionalities
+MVP, Extensible
+***
 
-* Configuration
+### Screenshots
 
-* Database creation
+*** 
 
-* Database initialization
+### Tech Stack
+* HTML, CSS#, SCSS for visual styling
+* Heroku Deployment
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+### Instructions on Local Configuration
+Instructions on how to setup, configure and use your App.
 
-* Deployment instructions
+*** 
 
-* ...
+### Design process
+
+***
+### User stories on Trello
+
+***
+### Workflow of User Stories
+
+***
+### Wireframes
+
+***
+### Database Entity Relationship Diagrams
+
+***
+###Project plan
+
+- timeline
+
+***
+### Exploratory Questions
