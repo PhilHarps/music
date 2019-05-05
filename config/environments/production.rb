@@ -5,6 +5,8 @@ Rails.application.configure do
       config.assets.compile = true
       config.assets.digest = true
 
+  # RACHEL INSERT Store uploaded files on Amazon S3
+      config.active_storage.service = :amazon
 
   # Code is not reloaded between requests.
   config.cache_classes = true
