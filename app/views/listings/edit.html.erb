@@ -1,0 +1,65 @@
+<br>
+<% if user_signed_in? %>
+<div class="container"> 
+  <h1>Editing listing</h1>
+<%= form_with model: @listing, local: true do |f| %>
+      <div class="form-group row">
+        <%= f.label :name, class: 'col-sm-2 col-form-label'%>
+          <div class="col-sm-9">
+            <%= f.text_field :name, class: "form-control"%>
+          </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :image, class: 'col-sm-2 col-form-label'%>
+          <div class="col-sm-9">
+            <%= f.file_field :image %>
+          </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :description, class: 'col-sm-2 col-form-label'%>
+          <div class="col-sm-9">
+            <%= f.text_area :description, class: "form-control"%>
+          </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :instrument_type, class: 'col-sm-2 col-form-label'%>
+          <div class="col-sm-9">
+            <%= f.text_field :instrument_type, class: "form-control"%>
+          </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :condition, class: 'col-sm-2 col-form-label'%>
+          <div class="col-sm-9">
+            <%= f.text_field :condition, class: "form-control"%>
+          </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :year, class: 'col-sm-2 col-form-label'%>
+          <div class="col-sm-9">
+            <%= f.text_field :year, class: "form-control"%>
+          </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :price, class: 'col-sm-2 col-form-label'%>
+          <div class="col-sm-9">
+            <%= f.text_field :price, class: "form-control"%>
+          </div>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
+      </div>
+      <br>
+      <div class="actions">
+        <%= f.submit 'Create Listing', class: 'btn btn-pink' %>
+      </div>
+  <% end %>
+</div>
+<% else %>
+<div class="container" style="text-align: center;">
+<h1>Sorry! Not allowed.</h1>
+  <%= image_tag("not_found.png", width: "50%") %>
+<h4>If this page belongs to you, please <%= link_to "log into", new_user_session_path %> your account </h4>
+<h4>Otherwise, please <%= link_to "sign up", new_user_registration_path %> for an account </h4>
+</div>
+</div>
+<% end %>

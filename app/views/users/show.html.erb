@@ -59,7 +59,7 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                 <a class="dropdown-item" href="<%= listing_path(listing.id) %>">View</a>
-                <a class="dropdown-item" href="#">Edit</a>
+                <%= link_to "Edit", edit_listing_path(listing.id), class: "dropdown-item" %>
                 <%= link_to "Delete", listing_path(listing.id), method: :delete, class: "dropdown-item", data: {confirm: 'Are you sure? It is permanent.' }%>
               </div>
             </div>

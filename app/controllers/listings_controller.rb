@@ -10,6 +10,17 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
   end
   
+  def edit
+    # edit listing
+    @listing = Listing.find(params[:id])
+  end
+
+  def update
+    @listing = Listing.find(params[:id])
+    @listing.update(listing_params)
+    redirect_to user_path(current_user.id)
+  end
+
   def create
     Listing.create(listing_params)
     redirect_to user_path(current_user.id)
