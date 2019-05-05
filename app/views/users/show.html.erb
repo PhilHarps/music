@@ -6,10 +6,12 @@
   <div class="profile row">
     <div class="col-md-4 avatar">
       <div class="wrapper">
-        <img src="https://picsum.photos/id/66/200/200">
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar %> 
+        <% end %>
       </div>
     </div>
-    
+
     <div class="col-md-8 basic-info">
       <div class="user-wrapper">
         <h2>Welcome <p class="username"><%= current_user.name %><p></h2>
