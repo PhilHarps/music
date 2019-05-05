@@ -1,12 +1,18 @@
 class ListingsController < ApplicationController
   
+  def destroy
+    @listing = current_user.listings.find(params[:id])
+    @listing.destroy
+    redirect_to user_path(current_user.id)
+  end
+
   def show
     @listing = Listing.find(params[:id])
   end
   
   def create
     Listing.create(listing_params)
-    redirect_to root_path
+    redirect_to user_path(current_user.id)
   end
 
   def index
