@@ -5,7 +5,9 @@
   <div class="card-columns">
     <% @listings.each do |listing| %>
     <div class="card">
+    <%=link_to listing_path(listing) do %>
       <%= image_tag listing.image, width: 100, class: "card-img-top"%>
+    <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= listing.name %></h5>
         <p class="card-text"><%= listing.description %></p>

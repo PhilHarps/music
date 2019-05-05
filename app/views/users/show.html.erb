@@ -43,7 +43,11 @@
   <tbody>
   <% @user.listings.each do |listing| %>
     <tr>
-        <td><%= image_tag listing.image, width: 100 %></td>
+        <td>
+        <%=link_to listing_path(listing) do %>
+          <%= image_tag listing.image, width: 100 %>
+        <% end %>
+        </td>
         <td><%= listing.name %></td>
         <td><%= listing.description %></td>
         <td><%= listing.year %></td>
