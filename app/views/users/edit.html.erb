@@ -1,0 +1,61 @@
+<br>
+<br>
+<div class="container">
+
+<%= form_with model: current_user, local: true do |f| %>
+  <div class="form-group row">
+    <div class="col-sm-3 col-form-label">
+      <img class="avatar-photo" src="https://picsum.photos/id/66/200/200">
+    </div>
+    <div class="col-sm-9">
+      <h2>Edit Profile</h2>
+      <p class="username"><%=current_user.email %></p>
+      <br>
+      <a class="change-photo" href="#">
+        <button class="btn btn-purple">Change Profile Photo</button></a>
+            <a class="edit-profile " href="<%= edit_user_registration_path %>">
+        <button class="btn btn-purple">Change Password</button>
+    </a>
+    </div>
+
+  </div>
+  <br>
+  <div class="form-group row">
+    <%= f.label :name, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :address, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= f.text_area :address, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :city, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :city, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :state, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :state, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :email, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :email, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-9">
+      <%= f.submit "Submit", class: 'btn btn-purple' %>
+    </div>
+  </div>
+<% end %>
+</div>

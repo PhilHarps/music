@@ -12,16 +12,14 @@
     
     <div class="col-md-8 basic-info">
       <div class="user-wrapper">
-        <h2 class="username">Welcome,   <%= current_user.email %></h2>
-                <a class="edit-profile">
-          <button class="btn btn-purple">Edit Profile</button>
-        </a>
-
+        <h2>Welcome <p class="username"><%= current_user.name %><p></h2>
+          <a class="edit-profile " href="<%= edit_user_path(current_user) %>">
+            <button class="btn btn-purple">Edit Profile</button>
+          </a>
       </div>
       <div class="posts">
       <p>You currently have <span>12</span> active Preloved listings</p>
-      </div>
-      
+      </div>     
     </div>
   </div>
   </div>
