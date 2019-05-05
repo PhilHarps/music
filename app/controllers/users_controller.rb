@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-
   def show
     # show listing of user (profile page doubles up as own listings page)
+    @user = User.find(params[:id])
   end
 
   def edit

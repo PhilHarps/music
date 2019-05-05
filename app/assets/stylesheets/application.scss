@@ -22,6 +22,7 @@
 
 $purple: #4d3794;
 $purple_btn: #6443af;
+$pink_btn: #dc418f;
 
 h1,
 h2,
@@ -49,6 +50,12 @@ a:hover {
 	background-color: $purple_btn !important;
 	color: white !important;
 }
+
+.btn-pink {
+	background-color: $pink_btn !important;
+	color: white !important;
+}
+
 /** DEVISE **/
 .notice {
 	position: absolute;

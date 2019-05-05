@@ -1,4 +1,17 @@
 <br>
 <div class="container">
-  <h1>Listing Index </>
+<h2>View all listings</h2>
+<br>
+  <div class="card-columns">
+    <% @listings.each do |listing| %>
+    <div class="card">
+      <%= image_tag listing.image, width: 100, class: "card-img-top"%>
+      <div class="card-body">
+        <h5 class="card-title"><%= listing.name %></h5>
+        <p class="card-text"><%= listing.description %></p>
+        <h5 class="card-title"><%= listing.price %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>

@@ -1,0 +1,14 @@
+<div class="container">
+<h1> Show Individual Listing </h1>
+
+
+      <p>ID <%= @listing.id %></p>
+      <p>Name <%= @listing.name %></p>
+      <p>Descr <%= @listing.description %></p>
+      <p>Price $ <%= @listing.price%></p>
+      <p>Year <%= @listing.year %></p>
+      <p>Year <%= @listing.instrument_type %></p>
+      <p>Condition <%= @listing.condition %></p>
+      <%= image_tag @listing.image, width: 100 %>
+
+</div>
