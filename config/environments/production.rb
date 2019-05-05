@@ -1,6 +1,11 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # RACHEL INSERT - To fix background image css to work on heroku
+      config.assets.compile = true
+      config.assets.digest = true
+
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

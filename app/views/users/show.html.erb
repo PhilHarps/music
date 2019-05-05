@@ -1,0 +1,91 @@
+
+<% if user_signed_in? %>
+<br>
+<div class="container">
+<div class="user-profile">
+  <div class="profile row">
+    <div class="col-md-4 avatar">
+      <div class="wrapper">
+        <img src="https://picsum.photos/id/66/200/200">
+      </div>
+    </div>
+    
+    <div class="col-md-8 basic-info">
+      <div class="user-wrapper">
+        <h2 class="username">Welcome,   <%= current_user.email %></h2>
+                <a class="edit-profile">
+          <button class="btn btn-purple">Edit Profile</button>
+        </a>
+
+      </div>
+      <div class="posts">
+      <p>You currently have <span>12</span> active Preloved listings</p>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="container">
+<table class="table table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+        <td><img src="https://picsum.photos/id/10/200/200"></td>
+        <td>Violin</td>
+        <td>Comes with hard case, bow, rosin, mute. Only slight scuffing on the body. Good sound </td>
+        <td>
+            <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-purple" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="#">View</a>
+                <a class="dropdown-item" href="#">Edit</a>
+                <a class="dropdown-item" href="#">Delete</a>
+              </div>
+            </div>
+        </td>
+    </tr>
+        <tr>
+      <th scope="row">2</th>
+        <td><img src="https://picsum.photos/id/1012/200/200"></td>
+        <td>Trumpet</td>
+        <td>Old case, comes with cleaning cloth. Good sound. No marks. </td>
+        <td>
+        <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-purple" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="#">View</a>
+                <a class="dropdown-item" href="#">Edit</a>
+                <a class="dropdown-item" href="#">Delete</a>
+              </div>
+            </div>
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<% else %>
+<div class="container" style="text-align:center">
+<br>
+<h1>Sorry! Not allowed.</h1>
+  <%= image_tag("not_found.png", width: "50%") %>
+<h4>If this page belongs to you, please <%= link_to "log into", new_user_session_path %> your account </h4>
+<h4>Otherwise, please <%= link_to "sign up", new_user_registration_path %> for an account </h4>
+</div>
+<% end %>
