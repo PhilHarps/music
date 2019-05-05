@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :users, only: [:show, :edit, :update]
-  resources :listings, only: [:new, :create]
+  resources :listings, only: [:new, :create, :show]
 end

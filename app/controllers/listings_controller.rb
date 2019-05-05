@@ -1,4 +1,9 @@
 class ListingsController < ApplicationController
+  
+  def show
+    @listing = Listing.find(params[:id])
+  end
+  
   def create
     Listing.create(listing_params)
     redirect_to root_path
@@ -10,7 +15,7 @@ class ListingsController < ApplicationController
   end
 
   private
-  
+
   def listing_params
     params.require(:listing).permit(:name, :description, :image, :condition, :instrument_type, :price, :year, :user_id)
   end

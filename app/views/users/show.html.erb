@@ -1,4 +1,3 @@
-
 <% if user_signed_in? %>
 <br>
 <div class="container">
@@ -55,7 +54,7 @@
                 Select Action
               </button>
               <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <a class="dropdown-item" href="#">View</a>
+                <a class="dropdown-item" href="<%= listing_path(listing.id) %>">View</a>
                 <a class="dropdown-item" href="#">Edit</a>
                 <a class="dropdown-item" href="#">Delete</a>
               </div>
