@@ -1,6 +1,6 @@
 <br>
 <div class="container">
-<h2>View all listings</h2>
+<h2>All Listings</h2>
 <br>
   <div class="card-columns">
     <% @listings.each do |listing| %>
@@ -9,9 +9,10 @@
       <div class="card-body">
         <h5 class="card-title"><%= listing.name %></h5>
         <p class="card-text"><%= listing.description %></p>
-        <h5 class="card-title"><%= listing.price %></p>
+        <h5 class="card-title" style="color: $pink"><%= number_to_currency listing.price %></p>
       </div>
     </div>
     <% end %>
   </div>
+  <%= paginate @listings %>
 </div>

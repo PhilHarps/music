@@ -5,10 +5,12 @@ class ListingsController < ApplicationController
   end
 
   def index
-    @listings = Listing.all
+    # @listing = Listing.all
+    @listings = Listing.order(created_at: :desc).page(params[:page]).per(6)
   end
 
   private
+  
   def listing_params
     params.require(:listing).permit(:name, :description, :image, :condition, :instrument_type, :price, :year, :user_id)
   end
