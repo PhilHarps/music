@@ -7,3 +7,20 @@
 		padding-right: 10px;
 	}
 }
+
+.listing_view {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.listing_view_side:nth-child(2) {
+	width: 100%;
+}
+
+.listing_view_side:nth-child(2) {
+	width: 50%;
+}
+.listing_view_btn {
+}
