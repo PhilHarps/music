@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   get 'pages/about'
   get 'pages/contact'
   get 'home/index'
-  get 'listings/index'
-  get 'search' => 'search#index'
+  get 'listings/brass'
+  get 'listings/percussion'
+  get 'listings/string'
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: "home#index"
 
   resources :users, only: [:show, :edit, :update]
-  resources :listings, only: [:new, :create, :show, :destroy, :edit, :update]
+  resources :listings, only: [:index, :new, :create, :show, :destroy, :edit, :update]
 end

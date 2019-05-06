@@ -22,7 +22,7 @@
  </a>
       </div>
       <div class="posts">
-      <p>You currently have <span><%= @user.listings.count %></span> active Preloved listings</p>
+      <p>You currently have <span><%= pluralize @user.listings.count, "listing" %></span> active on Pre:Loved.</p>
       </div>     
     </div>
   </div>

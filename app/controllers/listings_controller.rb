@@ -8,7 +8,6 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])  
-
   end
   
   def edit
@@ -30,6 +29,24 @@ class ListingsController < ApplicationController
   def index
     # @listing = Listing.all
     @listings = Listing.order(created_at: :desc).page(params[:page]).per(6)
+  end
+
+  def string
+    @type = "String"
+    # search method return only STRING :instrument_type listing
+    @listings = Listing.where("instrument_type LIKE ?", "%#{@type}%")
+  end
+
+  def brass
+    @type = "Brass"
+    # search method return only BRASS :instrument_type listing
+    @listings = Listing.where("instrument_type LIKE ?", "%#{@type}%")
+  end
+
+  def percussion
+    @type = "Percussion"
+    # search method return only PERCUSSION :instrument_type listing
+    @listings = Listing.where("instrument_type LIKE ?", "%#{@type}%")
   end
 
   private

@@ -10,13 +10,21 @@
       <% if user_signed_in? && current_user == @listing.user %>
             <%= link_to "Edit Listing", edit_listing_path(@listing.id), class: "btn btn-purple" %>      
       <% end %>
-      <%= link_to "Back", listings_index_path, class: "btn btn-light" %>
+      <br>
+      <%= link_to "Back", listings_path, class: "btn btn-light" %>
       </div>
       </div>
 
       <div class="listing_view_side">
             <ul class="list-group">
+            <% if user_signed_in? %>
                   <li class="list-group-item"><strong>Price:</strong> <%= number_to_currency(@listing.price) %></li>
+            <% else %>
+                  <li class="list-group-item"><strong>Price:</strong>
+                  <%= link_to "Pre:Loved", root_path %> maintains pricing only for <strong>verified school accounts</strong>.
+                  <p>For this reason, please <%= link_to "log in", new_user_session_path, method: :get %> or <%= link_to "sign up", new_user_registration_path, method: :get %> to see our pricing information.</p>
+                  </li>
+            <% end %>
                   <li class="list-group-item"><strong>Year:</strong> <%= @listing.year %></li>
                   <li class="list-group-item"><strong>Condition:</strong> <%= @listing.condition %> out of 5</li>
                   <li class="list-group-item"><strong>Type:</strong> <%= @listing.instrument_type %></li>
@@ -25,12 +33,10 @@
 <br>
                   <div class="card">
       <div class="card-header">
-      Description
+      <h5>Description</h5>
       </div>
       <div class="card-body">
-      <blockquote class="blockquote mb-0">
             <p><%= @listing.description %></p>
-      </blockquote>
       </div>
       </div>
 <br>
