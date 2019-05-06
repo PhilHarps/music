@@ -11,8 +11,22 @@
 
   <body>
     <%= render 'layouts/header' %>
-      <p class="notice"><%= notice%></p>
-      <p class="alert"><%= alert%></p>
+
+<%# styling devise alerts %>
+
+<% flash.each do |name, msg| %>
+    <% if msg.is_a?(String) %>
+    <div class="container" style="position:absolute;">
+
+      <div class="alert alert-<%= name == :notice ? "success" : "danger" %> alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      </div>
+            </div>
+    <% end %>
+  <% end %>
+
+  <%# styling devise alerts %>
 
     <%= yield %>
     <%= render 'layouts/footer' %>
