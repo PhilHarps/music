@@ -26,13 +26,15 @@
       <div class="form-group row">
         <%= f.label :instrument_type, class: 'col-sm-2 col-form-label'%>
           <div class="col-sm-9">
-            <%= f.text_field :instrument_type, class: "form-control"%>
+            <%= f.select :instrument_type, 
+              options_for_select([['Brass','Brass'], ['Percussion', 'Percussion'], ['String', 'String']]), class: "form-control" %>
           </div>
       </div>
       <div class="form-group row">
         <%= f.label :condition, class: 'col-sm-2 col-form-label'%>
           <div class="col-sm-9">
-            <%= f.text_field :condition, class: "form-control"%>
+            <%= f.select :condition, 
+              options_for_select([[1, 1], [2,2], [3,3], [4,4], [5,5]]), class: "form-control" %>
           </div>
       </div>
       <div class="form-group row">

@@ -27,6 +27,15 @@ class ListingsController < ApplicationController
   end
 
   def index
+
+    @search_term = params[:search]
+
+    if @search_term.blank?
+      @listings = Listing.order(created_at: :desc).page(params[:page])
+    else
+      @listings = Listing.where("description LIKE ?", "%#{@search_term}%")
+    end
+
     # @listing = Listing.all
     @listings = Listing.order(created_at: :desc).page(params[:page]).per(6)
   end

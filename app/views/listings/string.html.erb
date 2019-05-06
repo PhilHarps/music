@@ -9,8 +9,7 @@
       <%= image_tag listing.image, width: 100, class: "card-img-top"%>
     <% end %>
       <div class="card-body">
-        <h5 class="card-title"><%= listing.name %></h5>
-        <p class="card-text"><%= listing.description %></p>
+<h5 class="card-title"><%= link_to "#{listing.name}", listing_path(listing) %></h5>        <p class="card-text"><%= listing.description %></p>
         <% if user_signed_in? %>
           <h5 class="card-title">
           <%= number_to_currency listing.price %></h5>
