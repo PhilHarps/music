@@ -8,11 +8,19 @@
       <form>
         <div class="form-group row">
           <label for="searchHome" class="col-sm-4 col-form-label" style="font-weight:600;">Find your next instrument</label>
+
+
+          <%# SEARCH CONTROLLER METHOD NOT WORKING %>
+          <%= form_with url: search_path, method: :get, local: true, class: 'form-inline search-form' do |form| %>
+
           <div class="col-sm-6">
-            <input type="search" class="form-control" id="searchHome" placeholder="violin, trumpet, kazoo">
+            <%= form.text_field :query, value: params[:query], class: 'form-control', placeholder: '#search' %>
           </div>
-          
-          <input class="btn searchBtn" type="submit" value="Submit">
+
+            <%= form.submit "Search", class: "btn searchBtn" %>
+          <% end %>
+          <%# SEARCH CONTROLLER METHOD NOT WORKING %>
+
         </div>
       </form>
 </div>  

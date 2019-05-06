@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/index'
   devise_for :users
   get 'pages/about'
   get 'pages/contact'
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   get 'listings/percussion'
   get 'listings/string'
   
+  get 'search' => 'search#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

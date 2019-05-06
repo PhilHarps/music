@@ -1,0 +1,12 @@
+<br>
+<div class="container">
+    <% if @listings.exists? %>
+      <h1>Search Listing Results</h1>
+      <% @listings.each do |listing| %>
+        <h4><% listing.name %></h5>
+        <%=image_tag listing.image %>
+      <% end %>
+    <% else %>
+      <h1>No search results </h1>
+      <% end %>
+</div>
