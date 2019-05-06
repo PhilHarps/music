@@ -22,8 +22,12 @@ class ListingsController < ApplicationController
   end
 
   def create
-    Listing.create(listing_params)
+    @listing = Listing.new(listing_params)
     redirect_to user_path(current_user.id)
+  end
+
+  def new
+    @listing = Listing.new
   end
 
   def index
