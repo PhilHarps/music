@@ -1,6 +1,5 @@
 class SearchController < ApplicationController
   def index
-    @listings = Listing.all
-    @listings = Listing.where("description LIKE ?", "%#{params[:query]}%")
+    @listings = Listing.where('description like ?', "%#{params[:query]}%")
   end
 end

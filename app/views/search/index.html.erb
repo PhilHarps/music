@@ -3,10 +3,10 @@
     <% if @listings.exists? %>
       <h1>Search Listing Results</h1>
       <% @listings.each do |listing| %>
-        <h4><% listing.name %></h5>
+        <h4><% listing.name %></h4>
         <%=image_tag listing.image %>
       <% end %>
     <% else %>
-      <h1>No search results </h1>
-      <% end %>
+      <h1>No matching search results</h1>
+    <% end %>
 </div>

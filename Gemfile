@@ -72,3 +72,9 @@ gem "devise", "~> 4.6"
 gem "kaminari", "~> 1.1"
 
 gem "figaro", "~> 1.1"
+
+gem "aws-sdk-rails", "~> 2.1"
+
+gem "aws-sdk-s3", "~> 1.36"
+
+gem "aws-sdk", "~> 3.0"
