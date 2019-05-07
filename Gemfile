@@ -73,8 +73,8 @@ gem "kaminari", "~> 1.1"
 
 gem "figaro", "~> 1.1"
 
-gem "aws-sdk-rails", "~> 2.1"
+gem "cloudinary", "~> 1.11", require: false
 
-gem "aws-sdk-s3", "~> 1.36"
+gem "activestorage-cloudinary-service", "~> 0.2.3"
 
-gem "aws-sdk", "~> 3.0"
+gem 'dotenv-rails', groups: [:development, :test]

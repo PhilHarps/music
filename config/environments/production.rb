@@ -1,12 +1,21 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+
+
+
+  
   # RACHEL INSERT - To fix background image css to work on heroku
       config.assets.compile = true
       config.assets.digest = true
 
   # RACHEL INSERT Store uploaded files on Amazon S3
-      config.active_storage.service = :amazon
+      config.active_storage.service = :cloudinary
+
+
+
+
+
 
   # Code is not reloaded between requests.
   config.cache_classes = true

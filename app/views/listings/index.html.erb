@@ -4,7 +4,6 @@
 <br>
 
 <%# MATT STUBBS SEARCH METHOD - START %>
-<% if false %>
 <form action="<%= listings_path %>">
   <label>Search Instrument
     <input type="text" name="search">
@@ -14,7 +13,6 @@
 
 <% if @search_term %>
   <p>Found <%= pluralize @listings.count, "listing" %> matching <em> <%= @search_term %></em></p>
-<% end %>
 <% end %>
 <%# MATT STUBBS SEARCH METHOD  %>
 

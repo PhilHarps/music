@@ -22,8 +22,15 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new(listing_params)
-    redirect_to user_path(current_user.id)
+ 
+    @listing = Listing.create(listing_params)
+
+    # common patterns in rails
+    if @listing.valid?
+      redirect_to user_path(current_user.id)
+    else
+      render "new"
+    end
   end
 
   def new
@@ -31,17 +38,12 @@ class ListingsController < ApplicationController
   end
 
   def index
-
     @search_term = params[:search]
-
     if @search_term.blank?
-      @listings = Listing.order(created_at: :desc).page(params[:page])
+      @listings = Listing.order(created_at: :desc).page(params[:page]).per(6)
     else
-      @listings = Listing.where("description LIKE ?", "%#{@search_term}%")
+      @listings = Listing.where("description LIKE ?", "%#{@search_term}%").page(params[:page]).per(6)
     end
-
-    # @listing = Listing.all
-    @listings = Listing.order(created_at: :desc).page(params[:page]).per(6)
   end
 
   def string
