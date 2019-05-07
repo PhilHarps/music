@@ -12,7 +12,7 @@ user1 = User.create(name: "Princess Leia", email: "test@example.com", address: "
 
 # attach active storage avatar from aws to user 1
 user1.avatar.attach{
-  io: File.open('https://s3-ap-southeast-2.amazonaws.com/rails-preloved/icon1.png'),
+  io: File.open('https://res.cloudinary.com/rachelwong/image/upload/v1557203625/icon1_bqe0mb.png'),
     filename: 'icon1.png'
 }
 
@@ -21,6 +21,6 @@ listing1 = Listing.create(name: "Violin", description: "Stain on back of violin.
 
 # attach active storage image from aws to listing 1
 listing1.image.attach(
-    io: File.open('https://s3-ap-southeast-2.amazonaws.com/rails-preloved/violin1.jpg'),
+    io: File.open('https://res.cloudinary.com/rachelwong/image/upload/v1557203626/violin1_o6squf.jpg'),
     filename: 'violin1.jpg'
   )
