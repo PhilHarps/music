@@ -1,9 +1,18 @@
 class ListingsController < ApplicationController
   
+  # Added 8/5/2019
+  # Unsure whether this is will affect school-user
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
+  # actions that only a user can take
+  before_action :check_user, only: [:edit, :update, :destroy]
+
+
   def destroy
     @listing = current_user.listings.find(params[:id])
     @listing.destroy
     redirect_to user_path(current_user.id)
+
   end
 
   def show
@@ -66,7 +75,21 @@ class ListingsController < ApplicationController
 
   private
 
+      # Use callbacks to share common setup or constraints between actions.
+    def set_listing
+      @listing = Listing.find(params[:id])
+    end
+
   def listing_params
     params.require(:listing).permit(:name, :description, :image, :condition, :instrument_type, :price, :year, :user_id)
   end
+
+      # checks current user is the same person who created the listing in question
+    # if not the same user, they will be redirected to home page with an alert
+    def check_user
+      @listing = Listing.find(params[:id])
+      if current_user != @listing.user
+        redirect_to root_url, alert: "Sorry, this listing belongs to someone else."
+      end
+    end
 end
