@@ -14,6 +14,7 @@
     </div>
   <% end %>
 
+<div class="actual_form">
       <div class="form-group row">
         <%= f.label :name, class: 'col-sm-2 col-form-label'%>
           <div class="col-sm-9">
@@ -43,7 +44,32 @@
         <%= f.label :condition, class: 'col-sm-2 col-form-label'%>
           <div class="col-sm-9">
             <%= f.select :condition, 
-              options_for_select([[1, 1], [2,2], [3,3], [4,4], [5,5]]), class: "form-control" %>
+              options_for_select([[1, 1], [2,2], [3,3], [4,4], [5,5]]), class: "form-control form-control-lg" %>
+              <!-- Button trigger modal -->
+<button type="button" data-toggle="modal" data-target="#exampleModalCenter" style="background: none;border:none;">
+(what's this?)</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle"> title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Lorem ipsum dolor sit amet
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn purple-btn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Button trigger modal -->
           </div>
       </div>
       <div class="form-group row">
@@ -58,11 +84,12 @@
             <%= f.text_field :price, class: "form-control"%>
           </div>
       </div>
-      <div class="form-group">
+      <div class="form-group row">
         <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
       </div>
       <br>
       <div class="actions">
         <%= f.submit 'Create Listing', class: 'btn btn-pink' %>
       </div>
+</div>
   <% end %>

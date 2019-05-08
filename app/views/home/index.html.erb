@@ -1,29 +1,15 @@
- 
- 
+
 <div class="mainHeader">
   <div class="container mainText">
     <h1>Share your L<i class="fas fa-heart" style="font-size:3rem;"></i>ved Ones</h1>
     <h3>Re-homing Vintage Musical Instruments to Schools</h3>
     <p class="mainBlurb">A <span style="font-weight:900"> not-for-profit</span> exchange to pair up high-quality, second-hand acoustic musical instruments <br>with music makers in primary and secondary schools across Queensland. </p>
 <div class="searchForm">
-      <form>
-        <div class="form-group row">
-          <label for="searchHome" class="col-sm-4 col-form-label" style="font-weight:600;">Find your next instrument</label>
-
-
-          <%# SEARCH CONTROLLER METHOD NOT WORKING %>
-          <%= form_with url: search_path, method: :get, local: true, class: 'form-inline search-form' do |form| %>
-
-          <div class="col-sm-6">
-            <%= form.text_field :query, value: params[:query], class: 'form-control', placeholder: '#search' %>
-          </div>
-
-            <%= form.submit "Search", class: "btn searchBtn" %>
-          <% end %>
-          <%# SEARCH CONTROLLER METHOD NOT WORKING %>
-
-        </div>
-      </form>
+  <%= form_with url: search_path, method: :get, local: true, class: 'form-inline search-form' do |form| %>
+    <%= form.label :query, "Find your next instrument", class: 'col-sm-4 col-form-label' %>
+    <%= form.text_field :query, value: params[:query], class: 'form-control col-sm-6', placeholder: 'violin, trombone, triangle' %>
+    <%= form.submit "Search", class: "btn searchBtn" %>
+<% end %>
 </div>  
 
   </div>
@@ -71,4 +57,3 @@
 </div>
 </div>
 </div>
-

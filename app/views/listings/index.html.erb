@@ -3,18 +3,20 @@
 <h2>All Listings</h2>
 <br>
 
-<%# MATT STUBBS SEARCH METHOD - START %>
-<form action="<%= listings_path %>">
-  <label>Search Instrument
-    <input type="text" name="search">
-  </label>
-  <button type="submit">Search</button>
-</form>
+<%# NOT IMPLMENTED - MATT STUBBS SEARCH METHOD  %>
+<% if false %>
+  <form action="<%= listings_path %>">
+    <label>Search Instrument
+      <input type="text" name="search">
+    </label>
+    <button type="submit">Search</button>
+  </form>
 
-<% if @search_term %>
-  <p>Found <%= pluralize @listings.count, "listing" %> matching <em> <%= @search_term %></em></p>
+  <% if @search_term %>
+    <p>Found <%= pluralize @listings.count, "listing" %> matching <em> <%= @search_term %></em></p>
+  <% end %>
 <% end %>
-<%# MATT STUBBS SEARCH METHOD - END %>
+<%# END - MATT STUBBS SEARCH METHOD - NOT IMPLEMENTED %>
 
 <br>
   <div class="card-columns">

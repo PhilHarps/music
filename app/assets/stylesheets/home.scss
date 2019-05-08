@@ -50,13 +50,22 @@ $purple_btn: #6443af;
 }
 
 .searchForm form {
-	margin-top: 14px;
+	padding-top: 14px;
+	padding-bottom: 14px;
+}
+
+.searchForm form label {
+	font-weight: 600;
 }
 
 .searchBtn,
 .listingBtn {
 	background-color: $purple_btn !important;
 	color: white !important;
+}
+
+.searchBtn {
+	margin-left: 20px;
 }
 
 .mainCards {
