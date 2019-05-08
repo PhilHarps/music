@@ -3,21 +3,6 @@
 <h2>All Listings</h2>
 <br>
 
-<%# NOT IMPLMENTED - MATT STUBBS SEARCH METHOD  %>
-<% if false %>
-  <form action="<%= listings_path %>">
-    <label>Search Instrument
-      <input type="text" name="search">
-    </label>
-    <button type="submit">Search</button>
-  </form>
-
-  <% if @search_term %>
-    <p>Found <%= pluralize @listings.count, "listing" %> matching <em> <%= @search_term %></em></p>
-  <% end %>
-<% end %>
-<%# END - MATT STUBBS SEARCH METHOD - NOT IMPLEMENTED %>
-
 <br>
   <div class="card-columns">
     <% @listings.each do |listing| %>

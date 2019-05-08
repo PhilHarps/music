@@ -66,6 +66,18 @@ a:hover {
 	position: absolute;
 }
 
+.check-box {
+	display: flex;
+	line-height: 15px;
+	width: 40%;
+	justify-content: space-around;
+	margin: 30px 0 30px 10px;
+}
+
+.form-check-label{
+	font-weight:700;
+}
+
 /** HEADER **/
 .logo {
 	font-family: "Gugi", cursive;
