@@ -2,8 +2,6 @@
 <div class="container">
 <h2>All Listings</h2>
 <br>
-
-<br>
   <div class="card-columns">
     <% @listings.each do |listing| %>
     <div class="card">
@@ -14,15 +12,15 @@
         <h5 class="card-title"><%= link_to "#{listing.name}", listing_path(listing) %></h5>
         <p class="card-text"><%= listing.description %></p>
         <% if user_signed_in? %>
-          <h5 class="card-title">
-          <%= number_to_currency listing.price %></h5>
-          <% elsif user_signed_in? && current_user.is_school == true %>
-            <%= link_to "Buy This", root_path, class: "btn btn-purple" %>
+          <h5 class="card-title"><%= number_to_currency listing.price %></h5>
           <% else %>
-          <div class="pricealert alert-warning" role="alert">
+        <div class="pricealert alert-warning" role="alert">
           Please <%= link_to "log in", new_user_session_path, method: :get %> or <%= link_to "sign up", new_user_registration_path, method: :get %> to access pricing.
           </div>
           <% end %>
+        <% if user_signed_in? && current_user.is_school == true %>
+        <%= link_to "Buy #{listing.name}", root_path, class: "btn btn-purple" %>
+        <% end %>
       </div>
     </div>
     <% end %>

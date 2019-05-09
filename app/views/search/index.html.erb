@@ -30,6 +30,9 @@
           Please <%= link_to "log in", new_user_session_path, method: :get %> or <%= link_to "sign up", new_user_registration_path, method: :get %> to access pricing.
           </div>
           <% end %>
+          <% if user_signed_in? && current_user.is_school == true %>
+            
+          <% end %>
       </div>
     </div>
     <% end %>

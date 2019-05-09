@@ -6,11 +6,12 @@
 <div class="listing_view">
       <div class="listing_view_side">
       <%= image_tag @listing.image %>
-      <div class="listing_view_btn">
+      <br><br>
+      <div class="listing_view_btn" style="display:flex; width: 70%; justify-content: space-around;">
       <% if user_signed_in? && current_user == @listing.user %>
             <%= link_to "Edit Listing", edit_listing_path(@listing.id), class: "btn btn-purple" %>  
       <% elsif user_signed_in? && current_user.is_school == true %>
-            <%= link_to "Buy This", root_path, class: "btn btn-purple" %>  
+            <%= link_to "Buy This", root_path, class: "btn btn-pink" %>  
       <% end %>
       <br>
       <br>
