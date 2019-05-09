@@ -6,5 +6,5 @@ class User < ApplicationRecord
   has_many :listings, dependent: :destroy
   has_one_attached :avatar
 
-  validates :name, :address, :city, :state, presence: true
+  validates :name, :address, :email, :city, :state, presence: true
 end

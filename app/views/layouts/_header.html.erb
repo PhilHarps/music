@@ -20,21 +20,23 @@
       </li>
     </ul>
     <ul class="navbar-nav justify-content-end">
-      <% if user_signed_in? && current_user.is_school == true %>
+      <% if user_signed_in? && current_user.is_school? == true %>
            <li class="nav-item">
-            <%= link_to "Your School Profile", edit_user_path(current_user.id), class: "nav-item-link" %>
+            <%= link_to "Your School Profile", user_path(current_user.id), class: "nav-item-link" %>
         </li>      
         <li class="nav-item">
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-item-link" %>
         </li>
-    <% elsif user_signed_in? && current_user.is_school == false %>
+        <% end %>
+    <% if user_signed_in? && current_user.is_school? == false %>
          <li class="nav-item">
             <%= link_to "Your Listings(#{current_user.listings.count})", user_path(current_user.id), class: "nav-item-link" %>
         </li>
         <li class="nav-item">
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-item-link" %>
         </li>
-    <% else %>
+        <% end %>
+    <% if user_signed_in? == false %>
           <li class="nav-item">
             <%= link_to "Sign Up", new_user_registration_path, method: :get, class: "nav-item-link" %>
           </li>
