@@ -7,10 +7,16 @@
       <div class="card-body">
 <h5 class="card-title"><%= link_to "#{listing.name}", listing_path(listing) %></h5>
 <p class="card-text"><%= listing.description %></p>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && current_user.is_school? == true %>
+            <%= link_to "Buy This", root_path, class: "btn btn-pink" %>  
+        <% elsif user_signed_in? && current_user.is_school? == false %>
           <h5 class="card-title">
           <%= number_to_currency listing.price %></h5>
-          <% else %>
+        <% end %>
+        <% if user_signed_in? && current_user == listing.user %>
+         <%= link_to "Edit Your Listing", edit_listing_path(listing.id), class: "btn btn-purple" %>
+         <% end %>
+         <% if user_signed_in? == false %>
           <div class="pricealert alert-warning" role="alert">
           Please <%= link_to "log in", new_user_session_path, method: :get %> or <%= link_to "sign up", new_user_registration_path, method: :get %> to see our pricing information.
           </div>

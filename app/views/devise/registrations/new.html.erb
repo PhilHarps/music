@@ -4,60 +4,62 @@
 <br>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  
   <div class="form-group">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name, autofocus: true, class: "form-control" %>
   </div>
   <div class="form-group row check-box">
     <%= f.check_box :is_school, {}, true, class: "form-check-input" %>
     <%= f.label :is_school, "Tick if you are a School", class: "form-check-label"%>
-    <%# BUTTON TRIGGER MODAL %>
+    <%# BUTTON TRIGGER MODAL - START %>
     <div class="what_button">
       <button type="button" data-toggle="modal" data-target="#exampleModalCenter" style="background: none;border:none;">
       (what does this mean?)</button>
     </div>
-<%# MODAL BOX %>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Register a <strong style="text-decoration:underline;">School</strong> account on Pre:Loved</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <%# MODAL BOX %>
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Register a <strong style="text-decoration:underline;">School</strong> account on Pre:Loved</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" style="line-height: 26px;">
+            <p>Signing up for a school account with us on <a href="/">Pre:Loved</a> will allow you to purchase instruments on the site.</p> 
+            <p>You will not be able to list instruments for sale on the website, but you can access private seller details of each item.</p>
+            <p><span style="font-weight: 700;">Please note:</span> only primary and secondary schools <a href="https://schoolsdirectory.eq.edu.au/" target="_blank">registered</a> by Education Queensland are eligible for a school account on <a href="/">Pre:Loved</a>. Unfortunately at this stage the scheme has not yet expanded to home-schooling and private tuition providers.</p>
+            <p>Get in touch with us if you have concerns over account eligibility and privileges.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn searchBtn" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body" style="line-height: 26px;">
-      <p>Signing up for a school account with us on <a href="/">Pre:Loved</a> will allow you to purchase instruments on the site.</p> 
-      <p>You will not be able to list instruments for sale on the website, but you can access private seller details of each item.</p>
-      <p><span style="font-weight: 700;">Please note:</span> only primary and secondary schools <a href="https://schoolsdirectory.eq.edu.au/" target="_blank">registered</a> by Education Queensland are eligible for a school account on <a href="/">Pre:Loved</a>. Unfortunately at this stage the scheme has not yet expanded to home-schooling and private tuition providers.</p>
-      <p>Get in touch with us if you have concerns over account eligibility and privileges.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn searchBtn" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+      <%# BUTTON TRIGGER MODAL - END %>
   </div>
-</div>
-<%# BUTTON TRIGGER MODAL %>
-  </div>
-
   <div class="form-group">
-    <%= f.label :address %><br />
+    <%= f.label :avatar, autofocus: true %>
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address %>
     <%= f.text_field :address, autofocus: true, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :city %><br />
+    <%= f.label :city %>
     <%= f.text_field :city, autofocus: true, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :state %><br />
+    <%= f.label :state %>
     <%= f.text_field :state, autofocus: true, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
 
@@ -70,7 +72,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
   </div>
 

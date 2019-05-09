@@ -3,7 +3,7 @@
 <div class="search-page">
   <% if @listings.exists? %>
     <h1>Top Search Results</h1> 
-
+<br>
   <% else %>
   <br>
       <div style="text-align:center;">
@@ -22,16 +22,20 @@
       <div class="card-body">
         <h5 class="card-title"><%= link_to "#{listing.name}", listing_path(listing) %></h5>
         <p class="card-text"><%= listing.description %></p>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && current_user != listing.user %>
           <h5 class="card-title">
           <%= number_to_currency listing.price %></h5>
+          
+          <% elsif user_signed_in? && current_user == listing.user %>
+          <h5><%= number_to_currency listing.price %></h5>
+          <%= link_to "Edit Your Listing", edit_listing_path(listing.id), class: "btn btn-pink" %>
           <% else %>
           <div class="pricealert alert-warning" role="alert">
           Please <%= link_to "log in", new_user_session_path, method: :get %> or <%= link_to "sign up", new_user_registration_path, method: :get %> to access pricing.
           </div>
           <% end %>
-          <% if user_signed_in? && current_user.is_school == true %>
-            
+          <% if user_signed_in? && current_user.is_school? == true %>
+            <%= link_to "Buy This", root_path, class: "btn btn-pink" %>  
           <% end %>
       </div>
     </div>

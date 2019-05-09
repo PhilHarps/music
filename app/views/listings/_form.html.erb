@@ -45,11 +45,11 @@
           <div class="col-sm-9">
             <%= f.select :condition, 
               options_for_select([[1, 1], [2,2], [3,3], [4,4], [5,5]]), class: "form-control form-control-lg" %>
-              <!-- Button trigger modal -->
+<%# BUTTON TRIGGER MODAL - START %>
 <button type="button" data-toggle="modal" data-target="#exampleModalCenter" style="background: none;border:none;">
 (what's this?)</button>
 
-<!-- Modal -->
+<%# MODAL %>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
@@ -84,7 +84,7 @@
     </div>
   </div>
 </div>
-<!-- Button trigger modal -->
+<%# BUTTON TRIGGER MODAL - END %>
           </div>
       </div>
       <div class="form-group row">
@@ -105,6 +105,12 @@
       <br>
       <div class="actions">
         <%= f.submit 'Create Listing', class: 'btn btn-pink' %>
+
+        <%# FAILED - Change label of submit button depending on CREATE or EDIT listing %>
+        <% if false %>
+        <%= f.button :submit, value: "#{f.object.new_record? ? 'Create' : 'Update'}" %>
+        <% end %>
+        <%# FAILED %>
       </div>
 </div>
   <% end %>

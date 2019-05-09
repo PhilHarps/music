@@ -6,7 +6,7 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
-# RACEHL INSER
+# RACHEL INSERT
 
 cloudinary:
   service: Cloudinary

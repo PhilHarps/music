@@ -27,7 +27,7 @@
         <li class="nav-item">
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-item-link" %>
         </li>
-    <% elsif user_signed_in?%>
+    <% elsif user_signed_in? && current_user.is_school == false %>
          <li class="nav-item">
             <%= link_to "Your Listings(#{current_user.listings.count})", user_path(current_user.id), class: "nav-item-link" %>
         </li>

@@ -19,7 +19,9 @@
     <div class="card-deck">
       <div class="card">
         <div class"card-img-top" style="overflow:hidden;">
+        <%=link_to listings_brass_path do %>
           <%= image_tag("silver-cornet-instrument-on-sheet-music.jpg", width: "100%") %>
+          <% end %>
           </div>
         <div class="card-body">
           <h5 class="card-title">Brass and Jazz</h5>
@@ -33,7 +35,9 @@
       </div>
         <div class="card">
         <div class"card-img-top" style="overflow:hidden;">
+          <%=link_to listings_percussion_path do %>
           <%= image_tag("drum-set-overhead.jpg", width: "100%") %>
+          <% end %>
           </div>
         <div class="card-body">
           <h5 class="card-title">Keyboards & Percussion</h5>
@@ -46,7 +50,9 @@
       <div class="card">
         
         <div class"card-img-top" style="overflow:hidden;">
+          <%=link_to listings_string_path do %>
           <%= image_tag("violin-base--on-music-sheets.jpg", width: "100%") %>
+          <% end %>
           </div>
         <div class="card-body">
           <h5 class="card-title">The String Section</h5>
