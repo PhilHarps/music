@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
 
     # for sign up form
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :address, :city, :state, :email, :is_school])
 
     # for edit profile form
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :address, :city, :state, :email, :is_school])
   end
 
 end

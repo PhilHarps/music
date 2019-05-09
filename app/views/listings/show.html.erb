@@ -8,14 +8,15 @@
       <%= image_tag @listing.image %>
       <div class="listing_view_btn">
       <% if user_signed_in? && current_user == @listing.user %>
-            <%= link_to "Edit Listing", edit_listing_path(@listing.id), class: "btn btn-purple" %>      
+            <%= link_to "Edit Listing", edit_listing_path(@listing.id), class: "btn btn-purple" %>  
+      <% elsif user_signed_in? && current_user.is_school == true %>
+            <%= link_to "Buy This", root_path, class: "btn btn-purple" %>  
       <% end %>
       <br>
       <br>
       <%= link_to "Back", listings_path, class: "btn btn-light" %>
       </div>
       </div>
-
       <div class="listing_view_side">
             <ul class="list-group">
             <% if user_signed_in? %>
