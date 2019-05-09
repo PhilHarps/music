@@ -3,6 +3,7 @@
 <div class="search-page">
   <% if @listings.exists? %>
     <h1>Top Search Results</h1> 
+    <p style="font-style:italic;">There are <%= pluralize(@listings.count, "Pre:Loved instrument")  %> matches.</p> 
 <br>
   <% else %>
   <br>

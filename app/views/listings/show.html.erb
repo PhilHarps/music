@@ -17,7 +17,7 @@
       <br>
       <%= link_to "Back", listings_path, class: "btn btn-light" %>
       </div>
-      </div>
+      </div>      
       <div class="listing_view_side">
             <ul class="list-group">
             <% if user_signed_in? %>
@@ -88,7 +88,7 @@
       <% if user_signed_in? %>
       <ul class="list-group">
             <li class="list-group-item"><strong>Seller name:</strong> <%= @listing.user.name %></li>
-            <li class="list-group-item"><strong>Contact email:</strong> <%= @listing.user.email %></li>
+            <li class="list-group-item"><strong>Contact email:</strong> <%= mail_to @listing.user.email %></li>
             <li class="list-group-item"><strong>Item location:</strong> <%= @listing.user.city %>, <%= @listing.user.state %></li>
       </ul>
       <% else %>
