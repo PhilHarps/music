@@ -1,7 +1,7 @@
 <br>
 <div class="container">
 <h2>All Listings</h2>
-<p style="font-style:italic;">There are <%= pluralize(@listings.count, "Pre:Loved instrument")  %> listed.</p> 
+<p style="font-style:italic;">There are <%= pluralize(@allListings.count, "Pre:Loved instrument")  %> listed.</p> 
   <div class="card-columns">
     <% @listings.each do |listing| %>
     <div class="card">

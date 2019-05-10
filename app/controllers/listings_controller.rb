@@ -47,6 +47,8 @@ class ListingsController < ApplicationController
   end
 
   def index
+
+    @allListings = Listing.all
     @search_term = params[:search]
     if @search_term.blank?
       @listings = Listing.order(created_at: :desc).page(params[:page]).per(6)
