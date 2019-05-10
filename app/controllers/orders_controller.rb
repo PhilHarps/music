@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   def new
     @listing = Listing.find(params[:listing_id])
 
-    Stripe.api_key = 'sk_test_VcqYoQRDitxf5rSQDYjVIdLx00pt5Cvaax'
+    Stripe.api_key = ENV["STRIPE_API_SECRET"]
 
     @stripe_checkout_session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
@@ -24,5 +24,8 @@ class OrdersController < ApplicationController
     # render "create"
     # @listing.destroy
     # redirect_to root_path
+  end
+
+  def cancel
   end
 end
