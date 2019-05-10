@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
   def new
     @listing = Listing.find(params[:listing_id])
 
-
     Stripe.api_key = 'sk_test_VcqYoQRDitxf5rSQDYjVIdLx00pt5Cvaax'
 
     @stripe_checkout_session = Stripe::Checkout::Session.create(

@@ -26,7 +26,7 @@
         <p><%= mail_to @listing.user.email, "#{@listing.user.name}" %></p>
       </td>
       <td><%= number_to_currency @listing.price%></td>
-      <td><%= link_to "Pay Now", root_path, class: "btn btn-pink" %></td>
+      <td><button id="pay_button" class="btn btn-pink">Pay Now</button> </td>
     </tr>
     <tr class="table-active">
       <td colspan="3">
@@ -53,11 +53,17 @@
 <script>
 // STRIPE PUBLIC KEY 
   var stripe = Stripe('pk_test_MifHeLFt2rmcnldUORod1sOL00azkfqTOf');
-  stripe.redirectToCheckout({
-    sessionId: '<%= @stripe_checkout_session.id %>',
-  }).then(function (result) {
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `result.error.message`.
-  });
+
+  function goToCheckout(){
+    stripe.redirectToCheckout({
+      sessionId: '<%= @stripe_checkout_session.id %>',
+    }).then(function (result) {
+      // If `redirectToCheckout` fails due to a browser or network
+      // error, display the localized error message to your customer
+      // using `result.error.message`.
+    });
+  }
+
+  var button = document.querySelector("#pay_button");
+  button.addEventListener('click', goToCheckout);
 </script>
