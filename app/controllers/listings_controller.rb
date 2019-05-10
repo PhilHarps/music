@@ -7,7 +7,6 @@ class ListingsController < ApplicationController
   # actions that only a user can take
   before_action :check_user, only: [:edit, :update, :destroy]
 
-
   def destroy
     @listing = current_user.listings.find(params[:id])
     @listing.destroy

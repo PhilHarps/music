@@ -1,15 +1,14 @@
 <br>
 <div class="container">
 <h1>Purchase Order</h1>
-</div>
-<div class="container">
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Image</th>
-      <th scope="col">Name of Item</th>
-      <th scope="col">Seller</th>
+      <th scope="2">Name of Item</th>
+      <th scope="col">Contact Seller</th>
       <th scope="col">Price</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -21,13 +20,44 @@
       </th>
       <td>
         <p><%= @listing.name %></p>
-        <p><%= truncate @listing.description, length: 50, omission: '...(cont)' %></p>
+        <p style="font-style: italic;"><%= truncate @listing.description, length: 60, omission: '...(cont)' %></p>
       </td>
       <td>
-        <p><%= @listing.user.name %></p>
-        <p><%= mail_to @listing.user.email %></p>
+        <p><%= mail_to @listing.user.email, "#{@listing.user.name}" %></p>
       </td>
       <td><%= number_to_currency @listing.price%></td>
+      <td><%= link_to "Pay Now", root_path, class: "btn btn-pink" %></td>
+    </tr>
+    <tr class="table-active">
+      <td colspan="3">
+        <strong style="line-height: 10px;">Total</strong>
+        </td>
+      <td colspan="2"><strong style="text-decoration:underline; font-size: 1.2rem;"><%= number_to_currency @listing.price%></strong> <span style="font-size: .8rem;">(excl. GST)</span></td>
+      </td>
     </tr>
 </table>
 </div>
+
+<div class="container">
+<h5>Order Delivery Details </h5>
+  <ul class="list-group active" style="max-width:50%;">
+    <li class="list-group-item list-group-item-info" aria-disabled="true">Order ID: </li>
+    <li class="list-group-item"><strong>Name: </strong><%= current_user.name %></li>
+    <li class="list-group-item"><strong>Address: </strong><%= current_user.address %>, <%= current_user.city %>, <%= current_user.state %></li>
+    <li class="list-group-item"><strong>Email: <%= mail_to current_user.email %></strong></li>
+  </ul>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+// STRIPE PUBLIC KEY 
+  var stripe = Stripe('pk_test_MifHeLFt2rmcnldUORod1sOL00azkfqTOf');
+  stripe.redirectToCheckout({
+    sessionId: '<%= @stripe_checkout_session.id %>',
+  }).then(function (result) {
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `result.error.message`.
+  });
+</script>

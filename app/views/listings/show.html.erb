@@ -11,10 +11,8 @@
       <% if user_signed_in? && current_user == @listing.user %>
             <%= link_to "Edit Listing", edit_listing_path(@listing.id), class: "btn btn-purple" %>  
       <% elsif user_signed_in? && current_user.is_school == true %>
-            <%= link_to "Buy This", root_path, class: "btn btn-pink" %>  
+        <%= link_to "Buy #{@listing.name}", new_order_path(listing_id: @listing.id), class: "btn btn-pink" %>
       <% end %>
-      <br>
-      <br>
       <%= link_to "Back", listings_path, class: "btn btn-light" %>
       </div>
       </div>      
@@ -87,7 +85,7 @@
       <h5>Seller Details</h5>
       <% if user_signed_in? %>
       <ul class="list-group">
-            <li class="list-group-item"><strong>Seller name:</strong> <%= @listing.user.name %></li>
+            <li class="list-group-item"><strong>Preloved by:</strong> <%= @listing.user.name %></li>
             <li class="list-group-item"><strong>Contact email:</strong> <%= mail_to @listing.user.email %></li>
             <li class="list-group-item"><strong>Item location:</strong> <%= @listing.user.city %>, <%= @listing.user.state %></li>
       </ul>
