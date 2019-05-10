@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'orders/new'
   devise_for :users
   get 'pages/about'
   get 'pages/contact'
@@ -14,4 +15,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update]
   resources :listings, only: [:index, :new, :create, :show, :destroy, :edit, :update]
+  resources :orders
 end

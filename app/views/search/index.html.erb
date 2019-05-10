@@ -35,7 +35,7 @@
           </div>
           <% end %>
           <% if user_signed_in? && current_user.is_school? == true %>
-            <%= link_to "Buy This", root_path, class: "btn btn-pink" %>  
+            <%= link_to "Buy This", new_order_path(listing_id: listing.id), class: "btn btn-pink" %>  
           <% end %>
       </div>
     </div>

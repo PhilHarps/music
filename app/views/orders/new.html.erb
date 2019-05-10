@@ -1,0 +1,33 @@
+<br>
+<div class="container">
+<h1>Purchase Order</h1>
+</div>
+<div class="container">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Name of Item</th>
+      <th scope="col">Seller</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">
+        <%=link_to listing_path(@listing.id) do %>
+            <%= image_tag @listing.image, width: 100 %>
+          <% end %>
+      </th>
+      <td>
+        <p><%= @listing.name %></p>
+        <p><%= truncate @listing.description, length: 50, omission: '...(cont)' %></p>
+      </td>
+      <td>
+        <p><%= @listing.user.name %></p>
+        <p><%= mail_to @listing.user.email %></p>
+      </td>
+      <td><%= number_to_currency @listing.price%></td>
+    </tr>
+</table>
+</div>

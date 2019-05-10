@@ -9,7 +9,7 @@
 <h5 class="card-title"><%= link_to "#{listing.name}", listing_path(listing) %></h5>
 <p class="card-text"><%= listing.description %></p>
         <% if user_signed_in? && current_user.is_school? == true %>
-            <%= link_to "Buy This", root_path, class: "btn btn-pink" %>  
+            <%= link_to "Buy This", new_order_path(listing_id: listing.id), class: "btn btn-pink" %>  
         <% elsif user_signed_in? && current_user.is_school? == false %>
           <h5 class="card-title">
           <%= number_to_currency listing.price %></h5>
