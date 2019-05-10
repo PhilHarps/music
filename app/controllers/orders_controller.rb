@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  
   def new
     @listing = Listing.find(params[:listing_id])
 
@@ -13,8 +14,15 @@ class OrdersController < ApplicationController
         currency: 'aud',
         quantity: 1,
       }],
-      success_url: 'https://localhost:3000/success',
-      cancel_url: 'https://localhost:3000/cancel',
+      success_url: 'http://localhost:3000/success',
+      cancel_url: 'http://localhost:3000/cancel',
     )
+  end
+
+  def create
+    # defective create listing
+    # render "create"
+    # @listing.destroy
+    # redirect_to root_path
   end
 end

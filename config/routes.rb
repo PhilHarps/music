@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'listings/percussion'
   get 'listings/string'
   
+  get 'success', to: "orders#create"
   get 'search' => 'search#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
