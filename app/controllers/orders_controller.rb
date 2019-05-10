@@ -14,8 +14,8 @@ class OrdersController < ApplicationController
         currency: 'aud',
         quantity: 1,
       }],
-      success_url: 'http://localhost:3000/success',
-      cancel_url: 'http://localhost:3000/cancel',
+      success_url: 'http://secret-mountain-45294.herokuapp.com/success',
+      cancel_url: 'http://secret-mountain-45294.herokuapp.com/cancel',
     )
   end
 
