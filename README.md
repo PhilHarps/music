@@ -39,6 +39,7 @@ The only comparable Australian marketplace that seeks to achieve a similar aim i
 - Private sellers can only list instruments that abide by the marketplace's stringent grading policy on condition of the instrument.
 - These measures provides a valuable, high-integrity marketplace environment promising both sellers and schools of trustworthy transactions in service of a worthy cause. On the one hand, private citizen sellers can be confident that their preloved musical instruments will go to school students in need, and not for commercial or personal purposes. Likewise, schools who register on the "Pre:Loved Exchange" can enjoy a trusted source of good quality second-hand musical instruments at sympathetic prices.
 - The marketplace will not directly handle credit card information of customers. They uses an intermediary service like paypal or Stripe.
+- It is expected that each listing is entirely unique, only one of. (i.e. It is highly unlikely in a real world scenario to find two Gibson Acoustic Guitars with exactly the same year, condition and characteristics)
 
 ---
 
