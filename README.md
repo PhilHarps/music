@@ -60,8 +60,11 @@ Due to lack of coding experience and knowledge on Ruby-on-Rails, the developer o
 
 - Search bar on the home page is case sensitive, and only searches for words within the `description` field of the listing.
 - Alert messages
+- Contact us form failed
 
-Overall the codebase is of amateur quality. Solutions to coding problems are naive, repetitive (not DRY) - bordering on tautological - hamstrung by the lack of coding expertise/confidence and clear understanding of the Rails MVC framework. For example, to display different button functionalities for each type of user (un-logged in user, logged in user, logged in user who is also a school), the same control structures are repeated across several views.
+Overall the codebase is of amateur-quality.
+
+Solutions to problems are naive, repetitive (not DRY) - at times near tautological - brought on by a lack of coding ability and a clear understanding of the Rails MVC framework. For example, to display different button functionalities for each type of user (un-logged in user, logged in user, logged in user who is also a school) on different parts of the website, the same control structure is repeated across multiple views.
 
 ```
 <% if user_signed_in? && current_user.is_school? == true >
@@ -76,7 +79,13 @@ Overall the codebase is of amateur quality. Solutions to coding problems are nai
 <% end %>
 ```
 
-Some partials and centralised styling in `applications.scss` have been used in an attempt to consolidate and centralise some elements such as forms, the card used for each listing displayed in `View All Listing` and `Search Results`. However, the quality of the codebase and clunky user experience (i.e. Editing profile with details versus updating account authentication details) nonetheless demonstrated the the haphazard, disjointed _learning-on-the-fly_ process for the solo developer. Maintaining the application as it is will inevitably accrue compounding technical debt.
+Some partials and centralised styling in `applications.scss` have been used in an attempt to consolidate and centralise some elements such as
+
+- header, footer
+- forms
+- the card used to display each listing.
+
+However, the quality of the codebase and clunky user experience (i.e. Updating account authentication is nested a second level down from Editing Profile details) nonetheless demonstrated the haphazard _learning-on-the-fly_ process for the solo developer. Maintaining the application as it is currently submitted will inevitably accrue compounding technical debt.
 
 ---
 
@@ -84,7 +93,11 @@ Some partials and centralised styling in `applications.scss` have been used in a
 
 - Admin panel to view all listings by all users and have edit, delete privileges.
 - Custom email notifications to users to inform them of their account being verified
-- Use Rolify to define `:admin` role and privileges
+- Use Rolify to define `:admin` role and privileges (CRUD all listings)
+- Add a sorting category for instrument's current location
+- Add a favourites function to each listing so that school account holders can also view a "Wishlist"
+- Implement an order cart with add and remove item function. The final amount will be processed by Stripe.
+- Implement an "order received" notification to the site owner's email address for paper-trail
 
 ---
 
@@ -145,7 +158,7 @@ Some partials and centralised styling in `applications.scss` have been used in a
 
 > Provide your database schema design.
 
-<img src="https://github.com/rachelwong/music/blob/master/readme_assets/databaseSchema.png", width="800" />
+<img src="https://github.com/rachelwong/music/blob/master/readme_assets/databaseSchema.png" width="800" />
 
 > Identify the database to be used in your App and provide a justification for your choice.
 
@@ -178,6 +191,10 @@ The developer acknowledges the many open-source resources used in the project, w
 | [Bootstrap styles](https://getbootstrap.com/) | The visual appearance of the forms and site are all derivative of Bootstrap, which helped to cut development time and workload. |
 
 Images of instruments are taken randomly from Google search. They have been used to demonstrate intent and operation of the application and can be removed upon notification.
+
+```
+
+```
 
 ```
 
