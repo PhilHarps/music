@@ -145,7 +145,7 @@ Some partials and centralised styling in `applications.scss` have been used in a
 
 > Provide your database schema design.
 
-<a href="https://github.com/rachelwong/music/blob/master/readme_assets/databaseSchema.png"><img src="https://github.com/rachelwong/music/blob/master/readme_assets/databaseSchema.png", width="800" /></a>
+<img src="https://github.com/rachelwong/music/blob/master/readme_assets/databaseSchema.png", width="800" />
 
 > Identify the database to be used in your App and provide a justification for your choice.
 
