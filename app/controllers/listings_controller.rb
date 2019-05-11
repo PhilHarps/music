@@ -48,12 +48,12 @@ class ListingsController < ApplicationController
   def index
 
     @allListings = Listing.all
-    @search_term = params[:search]
-    if @search_term.blank?
+    # @search_term = params[:search]
+    # if @search_term.blank?
       @listings = Listing.order(created_at: :desc).page(params[:page]).per(6)
-    else
-      @listings = Listing.where("description LIKE ?", "%#{@search_term}%").page(params[:page]).per(6)
-    end
+    # else
+    #   @listings = Listing.where("description LIKE ?", "%#{@search_term}%").page(params[:page]).per(6)
+    # end
   end
 
   def string
