@@ -224,7 +224,7 @@ From training with Thoughtworks at their [LevelUp program](https://levelup.thoug
 
 If the developer was working in a team, new branches on github could be created for each user story or functionality before merging back to the master copy. This helps prevent the master codebase from being polluted with un-tested code, while allowing multiple functionalities to be developed concurrently by multiple team members. The separate branching will also enable better code review and tracking between team members.
 
-A likely flow of events for source control could be:
+A likely flow of events for feature-branching workflow could be:
 
 - 'git pull' on master branch
 - Create a new branch with: `git checkout -b branch-name`
@@ -306,10 +306,6 @@ protect_from_forgery with: :exception
 
 - Sanitize file upload fields (image uploads for listing and avatar) by whitelisting a file name that contains acceptable parameters
 
-- There are no admin panels currently installed on the project. However to protect it from obvious attacks, it may be prudent to give the admin URL a differnet name rather using the obvious www.preloved.com/admin
-
-- The project uses Devise as a way to manage user authentication. CAPTCHAS could be added in future to further protect the user when editing details such as passwords on the database.
-
 > Discuss methods you will use to protect information and data.
 
 Development-wise, a configuration `.env` file was created at the root directory to store sensitive credentials (Api secret keys for Stripe and Cloudinary). This file is added to the `.gitignore` in the root directory so that when the codebase is pushed up to the github (and by extension to Heroku), the `.env` is exempt from the git push but the application can still refer to the credentials and run successfully. Upon deployment to heroku, the secret keys are provided to heroku in the terminal by the user as `heroku config:set STRIPE_SECRET_KEY=whateverthekeyis`.
@@ -325,8 +321,35 @@ In terms of securing the system for users:
 - Collect data from users on a need-to-know basis
 - All users have the ability to purge the database of their own personal details
 - Heroku has built-in rollback functions, physical and logical backups, SSL to protect sensitive data between user and server
+- For future, implement the [audited gem](https://github.com/collectiveidea/audited)
+- There are no admin panels currently installed on the project. However to protect it from obvious attacks, it may be prudent to give the admin URL a differnet name rather using the obvious www.preloved.com/admin
+- The project uses Devise as a way to manage user authentication. CAPTCHAS could be added in future to further protect the user when editing details such as passwords on the database.
+- REthink the display of seller contact information even after user account authentication and instead use a contact form, or an intermediary service like a messenging chat bot.
+- Include a tick box when users sign up that they agree to give permission to retain and use of their data.
+- Encrypt backups of the Postgresql database
+- Encrypt personal information on the database with rotated unique keys, or use secured cloud services such as AWS with more ACL options.
+
+By the nature of the website itself (music store), it is unlikely that the database will store critical, classified data such as personal health, financial details.
 
 > Research what your legal obligations are in relation to handling user data.
+
+The _Privacy Act 1988_ is currently in operation in Australia that mandates businesses to protect customer data if their annual turnover is over \$3 million, or that they are
+
+- private sector health service providers
+- businesses that sell or purchase personal information
+- contractors providing services under a contract with the Australian Government
+- credit providers and credit reporting bodies
+- operators of a residential tenancy database.
+
+Singularly based on those criteria, it is not immediately clear to the developer that Pre:Loved as a non-profit, low-turnover marketplace selling musical instruments has any _mandatory_ legislative responsibilities in terms of customer data. Formal legal advice must be sought.
+
+However, it is only in the business's best interests to take due diligence to operate - especially in the non-profit space - in an ethical and conscionable manner. Any business should be guided by the principles set out by the European Union's [General Data Protection Regulation](https://eugdpr.org/) to ensure that any data breaches - irrespective of any real harm being committed - should be reported to supervisory authorities and customers within 72 hours. It also requires businesses to observe certain rights of the users, which includes:
+
+- right to be forgotten; have your data deleted on your request.
+- to see or change your own data.
+- to be notified when a company leaks your data.
+- to object to certain processing of your data.
+- to request your data as in a compatible format.
 
 ### Attribution
 
