@@ -22,9 +22,9 @@ On the other side of the equation, the key challenge for the developer to solve 
 
 > Why is it a problem that needs solving?
 
-**For Queensland schools to deliver quality musical education in the face of growing student demands and high market prices, ready access to quality orchestral instruments at affordable rates is paramount.**
+For Queensland schools to deliver quality musical education in the face of growing student demands and high market prices, ready access to quality orchestral instruments at affordable rates is paramount.
 
-This assignment therefore seeks to improve access to quality musical instrument for Queensland schools by building _a walled, two-sided marketplace "Pre:Loved" that allows verified private owners of second-hand musical instruments (i.e. parents of children who may have outgrown their instruments) to sell to primary and high schools at affordable prices._
+**This assignment therefore seeks to improve access to quality musical instrument for Queensland schools by building a walled, two-sided marketplace "Pre:Loved" that allows verified private owners of second-hand musical instruments (i.e. parents of children who may have outgrown their instruments) to sell to primary and high schools at affordable prices.**
 
 The only comparable Australian marketplace that seeks to achieve a similar aim is [Gift of Music](https://www.giftofmusic.org.au/), a non-profit drive helping rural and disadvantaged children gain access to musical instruments through volunteer donations. There appears to be no public listings of instruments available, operating only via private correspondence submitted to their contact form.
 
@@ -168,13 +168,35 @@ These are features not yet attempted.
 
 Please note that since this project was undertaken as a solo attempt, the development process did not exhibit the usual Git collaboration history, stand-up, agile or Kanban tracking as per the agile development methodology.
 
-> Discuss how Agile methodology is being implemented in your project. Describe the way tasks are allocated and tracked in your project. Project Timeline.
+> Describe the way tasks are allocated and tracked in your project.
+
+<img src="https://github.com/rachelwong/music/blob/master/readme_assets/trello2.png" width="700" />
+
+[Trello](https://trello.com/b/FVqaST5Q/preloved-2nd-hand-music-instruments-for-school) board is used to log MVP requirements, extensible nice-to-have features, user stories and to track each item as it has been built.
+
+Each task on the board is segmented by a contained user story that involves a particular input, underoing a process or transaction with the application, and returning an output.
+
+> Discuss how Agile methodology is being implemented in your project.
 
 | Sandbox Environment                                                                                       |                                         Example of Logging issues                                         |
 | --------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------: |
 | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/screenshot_test.png" width="400"> | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/thingsAttempted.png" width="400"> |
 
 > Provide an overview and description of your Source control process.
+
+If the developer was working in a team, new branches on github could be created for each user story or functionality before merging back to the master copy. This helps prevent the master codebase from being polluted with un-tested code, while allowing multiple functionalities to be developed concurrently by multiple team members. The separate branching will also enable better code review and tracking between team members.
+
+A likely flow of events for source control could be:
+
+- 'git pull' on master branch
+- Create a new branch with: `git checkout -b branch-name`
+- Commit new work to the new branch
+- Push to online repo `git push origin branch-name`
+- Checkout back to master `git checkout -b master`
+- Go to GitHub and merge into master `new pull request`
+- Delete the branch online if not needed
+- `git pull` on master branch
+- Delete the branch if not required after merging to master `git branch -d branch-name`
 
 ---
 

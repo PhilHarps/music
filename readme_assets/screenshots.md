@@ -2,11 +2,13 @@
 
 ### Homepage
 
-<img src="https://github.com/rachelwong/music/blob/master/readme_assets/screenshot_home.png" width="650">
+<img src="https://github.com/rachelwong/music/blob/master/readme_assets/Screenshot_home.png" width="650">
 
 ### View All Listing
 
-<img src="https://github.com/rachelwong/music/blob/master/readme_assets/screenshot_allListing.png" width="650">
+| As A User/Seller                                                                                                |                                                       As a School                                                       |
+| --------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/rachelwong/music/blob/master/readme_assets/screenshot_allListing.png" width="650"> | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/screenshot_viewListing_school.png" width="650"> |
 
 ### Seller Profile
 
