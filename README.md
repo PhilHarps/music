@@ -38,6 +38,7 @@ The only comparable Australian marketplace that seeks to achieve a similar aim i
 - Only school account holders may purchase intruments on the site.
 - Private sellers can only list instruments that abide by the marketplace's stringent grading policy on condition of the instrument.
 - These measures provides a valuable, high-integrity marketplace environment promising both sellers and schools of trustworthy transactions in service of a worthy cause. On the one hand, private citizen sellers can be confident that their preloved musical instruments will go to school students in need, and not for commercial or personal purposes. Likewise, schools who register on the "Pre:Loved Exchange" can enjoy a trusted source of good quality second-hand musical instruments at sympathetic prices.
+- The marketplace will not directly handle credit card information of customers. They uses an intermediary service like paypal or Stripe.
 
 ---
 
@@ -73,6 +74,7 @@ end
 ```
 
 - Order cart (with add, remove item) was not successful
+- schools can only buy one listing at a time
 - UI Alert messages for when a listing has been created, updated or deleted
 - Contact us form failed
 - Changing log in details (password, name) is nested into editing profile
@@ -82,14 +84,14 @@ end
 
 Overall the codebase is of amateur-quality.
 
-Solutions to problems are naive, repetitive (not DRY) - at times near tautological - brought on by a lack of coding ability and a clear understanding of the Rails MVC framework. For example, to display different button functionalities for each type of user (un-logged in user, logged in user, logged in user who is also a school) on different parts of the website, the same control structure is repeated across multiple views.
+Solutions to problems are naive, repetitive (not DRY) - at times near tautological - brought on by a lack of coding ability and a unclear (at best) understanding of developing on the Rails MVC framework. For example, to display different button functionalities for each type of user (un-logged in user, logged in user, logged in user who is also a school) on different parts of the website, the same control structure is repeated across multiple views.
 
 ```
-<% if user_signed_in? && current_user.is_school? == true >
+<% if user_signed_in? && current_user.is_school? == true %>
   ...
-<% if user_signed_in? && current_user.is_school? == false%>
+<% if user_signed_in? && current_user.is_school? == false %>
   ...
-<% elsif user_signed_in? == false >
+<% elsif user_signed_in? == false %>
   ...
 
 <% else %>
@@ -97,7 +99,7 @@ Solutions to problems are naive, repetitive (not DRY) - at times near tautologic
 <% end %>
 ```
 
-Some partials and centralised styling in `applications.scss` have been used in an attempt to consolidate and centralise some elements such as header, footer, forms, the card used to display each listing. However, the quality of the codebase and clunky user experience (i.e. Updating account authentication is nested a second level down from Editing Profile details) nonetheless demonstrated the haphazard, patchwork coding process of the solo developer. Maintaining the application as it is currently submitted will inevitably accrue compounding technical debt.
+Partials and centralised styling in `applications.scss` have been used in an attempt to consolidate and centralise some elements such as header, footer, forms, the card used to display each listing. Nonetheless, the quality of the codebase and clunky user experience (i.e. Updating account authentication is nested a second level down from Editing Profile details) demonstrated the ham-fisted coding process of the solo developer. Maintaining the application as it is currently submitted will inevitably accrue compounding technical debt.
 
 ---
 
@@ -166,21 +168,37 @@ These are features not yet attempted.
 
 ### Project Plan & Design process
 
-Please note that since this project was undertaken as a solo attempt, the development process did not exhibit the usual Git collaboration history, stand-up, agile or Kanban tracking as per the agile development methodology.
-
-> Describe the way tasks are allocated and tracked in your project.
-
-<img src="https://github.com/rachelwong/music/blob/master/readme_assets/trello2.png" width="700" />
-
-[Trello](https://trello.com/b/FVqaST5Q/preloved-2nd-hand-music-instruments-for-school) board is used to log MVP requirements, extensible nice-to-have features, user stories and to track each item as it has been built.
-
-Each task on the board is segmented by a contained user story that involves a particular input, underoing a process or transaction with the application, and returning an output.
+Please note that since this project was undertaken as a solo attempt, the development process did not exhibit the usual Git collaboration history, stand-up, Slack discussions, Kanban board tracking as per the agile development methodology.
 
 > Discuss how Agile methodology is being implemented in your project.
 
-| Sandbox Environment                                                                                       |                                         Example of Logging issues                                         |
+Althought this was a solo effort, a fast, responsive development cycle was used to manage learning and building concurrently. Tasks are first created on Trello (please see below section on how tasks are created)
+
+To prevent the master codebase from being contaminated, the repo was cloned to create a testing sandbox environment mirroring a latest build version. In this testing environment (nicknamed 'Post:Hate'), the developer can attempt building functionalities from following tutorials online, run validation test using different seeding data. It is in the testing sandbox environment that the developer try out unfamiliar ideas and conduct **unit testing** before progressing to actually building in the development version.
+
+Likewise, for some self-contained functionalities such as building a contact form, a separate repository is created to test out ideas and conduct unit testing.
+
+The first week of the development was devoted entirely to gain some familiarity with developing using the Rails framework by doing as many online tutorials and building multiple small projects. This meant that learning and building had to occur in parallel within a compressed build timeframe of one week. The development cycle therefore was an exercise in maintaining a clear sanitisation line between the development environment and the testing environemnt.
+
+| Testing Sandbox Environment                                                                               |                                         Example of Logging issues                                         |
 | --------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------: |
 | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/screenshot_test.png" width="400"> | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/thingsAttempted.png" width="400"> |
+
+Once a feature has been tested through the common through the edge case scenarios on localhost, it is immediately released into production (heroku). This **Continuous Deployment** approach is highly suitable to the solo effort in ensuring that
+
+1. there will always be an MVP in prod
+2. effectively project manage a large workload operating with a high degree of ambiguity (unfamiliar frameworks and third party services)
+3. ensure new features are frequently delivered to the end user.
+
+Once released, the task is then marked complete on trello, and the cycle begins for the next user story on trello.
+
+> Describe the way tasks are allocated and tracked in your project.
+
+[Trello](https://trello.com/b/FVqaST5Q/preloved-2nd-hand-music-instruments-for-school) board is used to log MVP requirements, extensible nice-to-have features, user stories and to track each item as it has been built.
+
+<img src="https://github.com/rachelwong/music/blob/master/readme_assets/trello2.png" width="600" />
+
+From training with Thoughtworks at their [LevelUp program](https://levelup.thoughtworks.com/) earlier in 2019, each user story is conceptualised as an actionable scenario that involves a particular input, undergoing a transformational process resulting in an output being returned. Each of these stories could effectively be described as an action. And each action became a task on the trello board. The same process is repeated for when errors and bugs are found on the system, for example, one bug tracking was "User image upload cannot be validated to the correct file extension".
 
 > Provide an overview and description of your Source control process.
 
@@ -193,8 +211,7 @@ A likely flow of events for source control could be:
 - Commit new work to the new branch
 - Push to online repo `git push origin branch-name`
 - Checkout back to master `git checkout -b master`
-- Go to GitHub and merge into master `new pull request`
-- Delete the branch online if not needed
+- Go to GitHub and merge into master with a new git pull request
 - `git pull` on master branch
 - Delete the branch if not required after merging to master `git branch -d branch-name`
 
@@ -202,9 +219,15 @@ A likely flow of events for source control could be:
 
 ### Workflow of User Stories
 
-> Provide Wireframes for your App. Provide User Stories for your App
+> Provide User Stories for your App
 
-[See wireframes and workflows here](readme_assets/user_stories.md)
+[See user stories and workflows here](readme_assets/user_stories.md)
+
+### Wireframes for your application
+
+> Provide Wireframes for your App.
+
+[See wireframes here](readme_assets/user_stories.md)
 
 ### Testing
 
