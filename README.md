@@ -92,10 +92,10 @@ Some partials and centralised styling in `applications.scss` have been used in a
 
 These are features not yet attempted.
 
-- Admin panel to view all listings by all users and have edit, delete privileges.
+- Admin panel section to view all listings by all users and have edit, delete privileges.
 - Implement a better `user` super/base model (polymorphism) to encapsulate the two child-types of users (buyers and sellers)
-- Custom email notifications to users to inform them of their account being verified
 - Use Rolify to define `:admin` role and privileges (CRUD all listings)
+- Custom email notifications to users to inform them of their account being verified
 - Add a sorting category for instrument's current location
 - Add a favourites function to each listing so that school account holders can also view a "Wishlist"
 - Implement an "order received" notification to the site owner's email address for paper-trail
