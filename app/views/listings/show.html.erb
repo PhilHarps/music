@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <br>
 <div class="container">
       <h3><%= @listing.name %></h3>
@@ -27,7 +30,39 @@
                   </li>
             <% end %>
                   <li class="list-group-item"><strong>Year:</strong> <%= @listing.year %></li>
-                  <li class="list-group-item"><strong>Condition:</strong> <%= @listing.condition %> out of 5 
+                  <li class="list-group-item"><strong>Condition:</strong>
+                  <% if @listing.condition == 1 %>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                  <% elsif @listing.condition == 2 %>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                  <% elsif @listing.condition == 3 %>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                  <% elsif @listing.condition == 4 %>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                  <% elsif @listing.condition == 5 %>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                  <% end %>
+                  
                   <!-- Button trigger modal -->
 <button type="button" data-toggle="modal" data-target="#exampleModalCenter" style="background: none;border:none;">
 (what's this?)</button>

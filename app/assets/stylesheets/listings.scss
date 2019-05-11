@@ -4,9 +4,9 @@
 
 $pink_btn: #dc418f;
 
-.btn-pink{
+.btn-pink {
 	background: $pink-btn;
-	color:white !important;
+	color: white !important;
 }
 
 .pagination {
@@ -41,18 +41,17 @@ $pink_btn: #dc418f;
 	display: table;
 }
 
-
-.actual_form{
-	position:relative !important;
-	display:block;
+.actual_form {
+	position: relative !important;
+	display: block;
 }
 
 #error_explanation {
 	width: 450px;
 	padding: 7px 7px 0;
 	margin-bottom: 20px;
-	display:block;
-	position:relative;
+	display: block;
+	position: relative;
 
 	h2 {
 		text-align: left;
@@ -71,4 +70,8 @@ $pink_btn: #dc418f;
 
 label {
 	display: block;
+}
+
+.checked {
+	color: orange;
 }

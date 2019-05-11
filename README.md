@@ -55,6 +55,7 @@ Due to lack of coding experience and knowledge on Ruby-on-Rails, the developer o
 - Listings are sorted by `instrument_type` attribute on the home page
 - Images (avatar, listing photos) can be uploaded onto Cloudinary
 - Listings can be purchased individually via Stripe
+- Image file type validation when uploading (only accepts .png and .jpg file extensions)
 
 ---
 
@@ -64,6 +65,7 @@ Due to lack of coding experience and knowledge on Ruby-on-Rails, the developer o
 - Order cart (with add, remove item) was not successful
 - UI Alert messages for when a listing has been created, updated or deleted
 - Contact us form failed
+- Changing log in details (password, name) is nested into editing profile
 
 Overall the codebase is of amateur-quality.
 
@@ -82,18 +84,16 @@ Solutions to problems are naive, repetitive (not DRY) - at times near tautologic
 <% end %>
 ```
 
-Some partials and centralised styling in `applications.scss` have been used in an attempt to consolidate and centralise some elements such as
-
-- header, footer
-- forms
-- the card used to display each listing.
-  However, the quality of the codebase and clunky user experience (i.e. Updating account authentication is nested a second level down from Editing Profile details) nonetheless demonstrated the haphazard _learning-on-the-fly_ process for the solo developer. Maintaining the application as it is currently submitted will inevitably accrue compounding technical debt.
+Some partials and centralised styling in `applications.scss` have been used in an attempt to consolidate and centralise some elements such as header, footer, forms, the card used to display each listing. However, the quality of the codebase and clunky user experience (i.e. Updating account authentication is nested a second level down from Editing Profile details) nonetheless demonstrated the haphazard _learning-on-the-fly_ process for the solo developer. Maintaining the application as it is currently submitted will inevitably accrue compounding technical debt.
 
 ---
 
 ### Extensible Features
 
+These are features not yet attempted.
+
 - Admin panel to view all listings by all users and have edit, delete privileges.
+- Implement a better `user` super/base model (polymorphism) to encapsulate the two child-types of users (buyers and sellers)
 - Custom email notifications to users to inform them of their account being verified
 - Use Rolify to define `:admin` role and privileges (CRUD all listings)
 - Add a sorting category for instrument's current location
