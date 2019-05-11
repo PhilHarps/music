@@ -45,20 +45,46 @@ The only comparable Australian marketplace that seeks to achieve a similar aim i
 
 Due to lack of coding experience and knowledge on Ruby-on-Rails, the developer only aimed to achieve MVP functionalities, which include:
 
-- User account log-in, log-out through [Devise gem](https://github.com/plataformatec/devise)
+- User account creation and authentication
 - User can CRUD own profile, including uploading an avatar image
-- User can upload listings, which they can manage (edit, view, delete) from their profile
-- Basic Search through all listings
+- User can CRUD listings
+- User can view/manage a list of their own listings from the profile
+- Basic keyword Search function through all listings
+- Listings are sorted by instrument type
+- Images (avatar, listing photos) can be uploaded onto Cloudinary
+-
 
 ---
 
 ### Unresolved Problems
 
 - Search bar on the home page is case sensitive, and only searches for words within the `description` field of the listing.
+- Alert messages
+
+Overall the codebase is of amateur quality. Solutions to coding problems are naive, repetitive (not DRY) - bordering on tautological - hamstrung by the lack of coding expertise/confidence and clear understanding of the Rails MVC framework. For example, to display different button functionalities for each type of user (un-logged in user, logged in user, logged in user who is also a school), the same control structures are repeated across several views.
+
+```
+<% if user_signed_in? && current_user.is_school? == true >
+  ...
+<% if user_signed_in? && current_user.is_school? == false%>
+  ...
+<% elsif user_signed_in? == false >
+  ...
+
+<% else %>
+// rescue for unauthorised access
+<% end %>
+```
+
+Some partials and centralised styling in `applications.scss` have been used in an attempt to consolidate and centralise some elements such as forms, the card used for each listing displayed in `View All Listing` and `Search Results`. However, the quality of the codebase and clunky user experience (i.e. Editing profile with details versus updating account authentication details) nonetheless demonstrated the the haphazard, disjointed _learning-on-the-fly_ process for the solo developer. Maintaining the application as it is will inevitably accrue compounding technical debt.
 
 ---
 
 ### Extensible Features
+
+- Admin panel to view all listings by all users and have edit, delete privileges.
+- Custom email notifications to users to inform them of their account being verified
+- Use Rolify to define `:admin` role and privileges
 
 ---
 
@@ -119,6 +145,8 @@ Due to lack of coding experience and knowledge on Ruby-on-Rails, the developer o
 
 > Provide your database schema design.
 
+<a href="https://github.com/rachelwong/music/blob/master/readme_assets/databaseSchema.png"><img src="https://github.com/rachelwong/music/blob/master/readme_assets/databaseSchema.png", width="800" /></a>
+
 > Identify the database to be used in your App and provide a justification for your choice.
 
 Rails by nature is database agnostic and will default to MySQL. However, PostgreSQL has been chosen for "Pre:Loved" due to the following:
@@ -127,7 +155,6 @@ Rails by nature is database agnostic and will default to MySQL. However, Postgre
 - ACID (Atomicity, Consistency, Isolation, Durability) properties of PostgreSQL ensures no data is lost or miscommunicated across the system in the event of failure. This is particulary attractive as this application's database holds private personal details of schools and private citizens (addresses, emails, names).
 - It's free and open source. Low start-up seeding required.
 - CRUD performances and data validation are important priorities should "Pre:Loved" gain traction with the school community. The database may be required to handle growing amounts of private user information, listings data, and all its accompanying security concerns. MySQL is well suited for straightforward data transactions. However, PostgreSQL will _future-proof_ the application for more complex query executions, faster data latency, read/write/retrieval performance optimisation and even open up avenues to business intelligence analytics.
-- While
 
   > Identify and describe the production database setup (i.e. postgres instance).\*
 
@@ -136,3 +163,22 @@ Rails by nature is database agnostic and will default to MySQL. However, Postgre
 > Discuss and analyse requirements related to information system security. Discuss methods you will use to protect information and data.
 
 > Research what your legal obligations are in relation to handling user data.
+
+### Attribution
+
+This work is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/) where all parts of the work, including codebase, can be shared and adapted for non-commercial purposes without written permission from the developer.
+
+The developer acknowledges the many open-source resources used in the project, without them the "Pre:Loved" application will not have been possible.
+
+| Source                                        |                                                 How it was used in the project                                                  |
+| --------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------: |
+| [Undraw](https://undraw.co/illustrations)     |               Vector illustrations used in user interface messages (404 errors, success/cancel purchase message)                |
+| [Burst](https://burst.shopify.com)            |                     High quality photographs used as banner and as decorative elements throughout the site.                     |
+| [Google Fonts](https://fonts.google.com)      |                 Gugi and Robot have been used as typefaces for the application logo and body-text respectively.                 |
+| [Bootstrap styles](https://getbootstrap.com/) | The visual appearance of the forms and site are all derivative of Bootstrap, which helped to cut development time and workload. |
+
+Images of instruments are taken randomly from Google search. They have been used to demonstrate intent and operation of the application and can be removed upon notification.
+
+```
+
+```
