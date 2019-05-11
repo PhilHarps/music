@@ -61,7 +61,17 @@ Due to lack of coding experience and fragmented understanding of Ruby-on-Rails, 
 
 ### Unresolved Problems
 
-- Search bar on the home page is case sensitive, and only searches for words within the `description` field of the listing.
+- Search bar on the home page is case sensitive, and only searches for words within the `description` field of the listing. Below is an attempt to resolve the issue.
+
+```
+class SearchController < ApplicationController
+def index
+    @listings = Listing.all
+    @listings = Listing.where("description LIKE ? OR name LIKE ? OR instrument_type LIKE ?",  "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+    end
+end
+```
+
 - Order cart (with add, remove item) was not successful
 - UI Alert messages for when a listing has been created, updated or deleted
 - Contact us form failed
@@ -87,7 +97,7 @@ Solutions to problems are naive, repetitive (not DRY) - at times near tautologic
 <% end %>
 ```
 
-Some partials and centralised styling in `applications.scss` have been used in an attempt to consolidate and centralise some elements such as header, footer, forms, the card used to display each listing. However, the quality of the codebase and clunky user experience (i.e. Updating account authentication is nested a second level down from Editing Profile details) nonetheless demonstrated the haphazard _learning-on-the-fly_ process for the solo developer. Maintaining the application as it is currently submitted will inevitably accrue compounding technical debt.
+Some partials and centralised styling in `applications.scss` have been used in an attempt to consolidate and centralise some elements such as header, footer, forms, the card used to display each listing. However, the quality of the codebase and clunky user experience (i.e. Updating account authentication is nested a second level down from Editing Profile details) nonetheless demonstrated the haphazard, patchwork coding process of the solo developer. Maintaining the application as it is currently submitted will inevitably accrue compounding technical debt.
 
 ---
 
@@ -102,7 +112,8 @@ These are features not yet attempted.
 - Add a sorting category for instrument's current location
 - Add a favourites function to each listing so that school account holders can also view a "Wishlist"
 - Implement an "order received" notification to the site owner's email address for paper-trail
-- Implement [GDPR-Rails](https://github.com/prey/gdpr_rails) gem for data privacy
+- Implement [GDPR-Rails gem](https://github.com/prey/gdpr_rails) gem for data privacy
+- Implement [Better Errors gem](https://github.com/BetterErrors/better_errors) for better error messages and debugging when developing in future
 
 ---
 
@@ -124,10 +135,10 @@ These are features not yet attempted.
 
 > Detail any third party services that your App will use.
 
-- Cloudinary Cloud Storage: Considerable development time was spent researching and understanding server environments and cloud storage options, including reading AWS documentation. At the recommendation of the tutor MR Matt Stubbs, Cloudinary was chosen to work with Active Storage on rails to store and upload images onto the application once deployed on Heroku.
-- Google Fonts: Google Fonts are used for logo and body of the text.
-- Stripe: For handling secure payment transactions and processing of credit card details. Very helpful to outsource credit card authentication and storage outside of the application to mitigate any security risks.
-- Heroku: Network platform of choice configured with a database, connection to Cloudinary and Stripe.
+- **Cloudinary Cloud Storage**: Considerable development time was spent researching and understanding server environments and cloud storage options, including reading AWS documentation. At the recommendation of the tutor MR Matt Stubbs, Cloudinary was chosen to work with Active Storage on rails to store and upload images onto the application once deployed on Heroku.
+- **Google Fonts**: Google Fonts are used for logo and body of the text.
+- **Stripe**: For handling secure payment transactions and processing of credit card details. Very helpful to outsource credit card authentication and storage outside of the application to mitigate any security risks.
+- **Heroku**: Network platform of choice configured with a database, connection to Cloudinary and Stripe.
 
 #### Gem Dependencies
 
@@ -159,9 +170,9 @@ Please note that since this project was undertaken as a solo attempt, the develo
 
 > Discuss how Agile methodology is being implemented in your project. Describe the way tasks are allocated and tracked in your project. Project Timeline.
 
-| Testing                                                                                               |                                              Logging issues                                               |
-| ----------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------: |
-| <img src="https://github.com/rachelwong/music/blob/master/readme_assets/screen_test.png" width="400"> | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/thingsAttempted.png" width="400"> |
+| Sandbox Environment                                                                                       |                                         Example of Logging issues                                         |
+| --------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/rachelwong/music/blob/master/readme_assets/screenshot_test.png" width="400"> | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/thingsAttempted.png" width="400"> |
 
 > Provide an overview and description of your Source control process.
 
@@ -173,10 +184,6 @@ Please note that since this project was undertaken as a solo attempt, the develo
 
 [See wireframes and workflows here](readme_assets/user_stories.md)
 
-| Tables   |      Are      |   Cool |
-| -------- | :-----------: | -----: |
-| col 3 is | right-aligned | \$1600 |
-
 ### Testing
 
 > Provide an overview and description of your Testing process.
@@ -185,20 +192,22 @@ Please note that since this project was undertaken as a solo attempt, the develo
 
 > Discuss the database relations to be implemented. Describe your project’s models in terms of the relationships (active record associations) they have with each other.
 
+<img src="https://github.com/rachelwong/music/blob/master/readme_assets/model_schema.png" width="700" />
+
 > Provide your database schema design.
 
 <img src="https://github.com/rachelwong/music/blob/master/readme_assets/databaseSchema.png" width="800" />
 
 > Identify the database to be used in your App and provide a justification for your choice.
 
-Rails by nature is database agnostic and will default to MySQL. However, PostgreSQL has been chosen for "Pre:Loved" due to the following:
+Rails by nature is database agnostic and will default to MySQL. However, **PostgreSQL** has been chosen for Pre:Loved due to the following:
 
 - The deployment platform defined in the course is [Heroku](https://heroku.com), which uses PostgreSQL natively. While the [ClearDB add-on](https://devcenter.heroku.com/articles/cleardb) is available as a database-as-a-service to bridge MySQL to Heroku, implementing ClearDB will bring a additional learning commitment unachievable to an inexperienced developer flying solo in a compressed two-week timeframe.
 - ACID (Atomicity, Consistency, Isolation, Durability) properties of PostgreSQL ensures no data is lost or miscommunicated across the system in the event of failure. This is particulary attractive as the application database holds private personal details of schools and individuals (addresses, emails, names).
 - It's free and open source. Low start-up seeding required.
 - CRUD performances and data validation are important priorities should Pre:Loved gain traction upon release in the real world. The database may then be required to handle growing amounts of private user information, listings data, with all its accompanying security concerns. MySQL is well suited for straightforward data transactions. However, PostgreSQL will _future-proof_ the application for more complex SQL query executions, faster data latency, read/write/retrieval performance optimisation and even open up avenues to business intelligence analytics.
 
-  > Identify and describe the production database setup (i.e. postgres instance).\*
+> Identify and describe the production database setup (i.e. postgres instance).\*
 
 ### Security
 
@@ -206,7 +215,11 @@ Rails by nature is database agnostic and will default to MySQL. However, Postgre
 
 > Discuss methods you will use to protect information and data.
 
-The Figaro gem was installed but never used. It serves a similar function to .env, which generates instead an `appliation˘
+Development-wise, a configuration `.env` file was created at the root directory to store sensitive credentials (Api secret keys for Stripe and Cloudinary). This file is added to the `.gitignore` in the root directory so that when the codebase is pushed up to the github (and by extension to Heroku), the `.env` is exempt from the git push but the application can still refer to the credentials and run successfully. Upon deployment to heroku, the secret keys are provided to heroku in the terminal by the user as `heroku config:set STRIPE_SECRET_KEY=whateverthekeyis`.
+
+The Figaro gem was installed but never used. It serves a similar function to .env, which generates instead an `appliation.yml˘ file instead.
+
+The Devise gem helped with the secure authentication and field validation of user sign up and log in.
 
 > Research what your legal obligations are in relation to handling user data.
 
