@@ -1,4 +1,4 @@
-# PreLoved : A study in developing on Ruby-on-Rails
+# Two-side Marketplace : A study in developing on Ruby-on-Rails in the blind
 
 https://secret-mountain-45294.herokuapp.com/
 
@@ -12,7 +12,7 @@ Codebase: https://github.com/rachelwong/music
 
 Queensland public and private primary and secondary schools have for years enjoyed a robust and comprehensive [musical and arts program](https://education.qld.gov.au/parents-and-carers/activities-music-sports/instrumental-music-program) as part of their baseline education curriculum. More than 400 instrumental teachers and over 50,000 students are currently involved in Education Queensland's [Instrumental Music Program](https://education.qld.gov.au/parents-and-carers/activities-music-sports/instrumental-music-program). Students from grade 3 (age 7-8) to grade 12 (age 17-18) can learn to play band and orchestral instruments (brass, woodwind, percussion, strings) in small groups and participate in larger ensembles, such as concert bands and orchestras.
 
-While each school's musical curriculum may vary in size, it is encumbent upon each school's administration to set aside sufficient annual budgetary allowances to maintain existing inventory (i.e. purchasing replacement parts like woodwind reeds and violin strings) and to acquire new instruments as needed to meet student demands.
+While each school's musical curriculum may vary in size, it is encumbent upon each school's administration to set aside sufficient annual budgetary allowances to maintain existing inventory (i.e. purchasing replacement parts like woodwind reeds and violin strings) and to acquire new instruments as needed.
 
 > Identify the problem you’re trying to solve by building this particular marketplace App?
 
@@ -24,7 +24,7 @@ On the other side of the equation, the key challenge for the developer to solve 
 
 **For Queensland schools to deliver quality musical education in the face of growing student demands and high market prices, ready access to quality orchestral instruments at affordable rates is paramount.**
 
-This assignment therefore seeks to improve access to quality musical instrument in Queensland schools by building \*a walled, two-sided marketplace "Pre:Loved" that allows verified private owners of second-hand musical instruments (i.e. parents of children who may have outgrown their instruments) to sell to primary and high schools at affordable prices.\*
+This assignment therefore seeks to improve access to quality musical instrument for Queensland schools by building _a walled, two-sided marketplace "Pre:Loved" that allows verified private owners of second-hand musical instruments (i.e. parents of children who may have outgrown their instruments) to sell to primary and high schools at affordable prices._
 
 The only comparable Australian marketplace that seeks to achieve a similar aim is [Gift of Music](https://www.giftofmusic.org.au/), a non-profit drive helping rural and disadvantaged children gain access to musical instruments through volunteer donations. There appears to be no public listings of instruments available, operating only via private correspondence submitted to their contact form.
 
@@ -43,7 +43,7 @@ The only comparable Australian marketplace that seeks to achieve a similar aim i
 
 ### Functionalities
 
-Due to lack of coding experience and knowledge on Ruby-on-Rails, the developer only aimed to achieve MVP functionalities, which include:
+Due to lack of coding experience and fragmented understanding of Ruby-on-Rails, the developer only managed to achieve minimal basic functionalities on the MVP list, which included:
 
 - User account creation and authentication
 - User can CRUD own profile, including uploading an avatar image
@@ -66,6 +66,9 @@ Due to lack of coding experience and knowledge on Ruby-on-Rails, the developer o
 - UI Alert messages for when a listing has been created, updated or deleted
 - Contact us form failed
 - Changing log in details (password, name) is nested into editing profile
+- delete the listing from the database when it has been successfully purchased (stripe transaction successful)
+- add purchased listing into the Purchase history of the school profile
+- when an account is first created and the avatar image is uploaded, the image does not appear in the user_path view. The user has to edit their profile and re-upload the avatar image.
 
 Overall the codebase is of amateur-quality.
 
@@ -99,31 +102,32 @@ These are features not yet attempted.
 - Add a sorting category for instrument's current location
 - Add a favourites function to each listing so that school account holders can also view a "Wishlist"
 - Implement an "order received" notification to the site owner's email address for paper-trail
+- Implement [GDPR-Rails](https://github.com/prey/gdpr_rails) gem for data privacy
 
 ---
 
 ### Screenshots
 
----
+[See Screenshots here](readme_assets/screenshots.md)
 
 ### Tech Stack
 
 > Identify and describe the software to be used in your App.
 
-- HTML, CSS#, SCSS for visual styling
-- Heroku Deployment
+- HTML, CSS3, SCSS for visual styling
+- Ruby-on-Rails for development
+- RSpec for testing
+- Heroku for deployment
+- Rails Gems (see below) for extending functionalities beyond MVC
 
 > Describe the network infrastructure the App may be based on.
 
 > Detail any third party services that your App will use.
 
-Cloudinary
-
-Google Fonts
-
-Stripe
-
-Heroku
+- Cloudinary Cloud Storage: Considerable development time was spent researching and understanding server environments and cloud storage options, including reading AWS documentation. At the recommendation of the tutor MR Matt Stubbs, Cloudinary was chosen to work with Active Storage on rails to store and upload images onto the application once deployed on Heroku.
+- Google Fonts: Google Fonts are used for logo and body of the text.
+- Stripe: For handling secure payment transactions and processing of credit card details. Very helpful to outsource credit card authentication and storage outside of the application to mitigate any security risks.
+- Heroku: Network platform of choice configured with a database, connection to Cloudinary and Stripe.
 
 #### Gem Dependencies
 
@@ -151,7 +155,15 @@ Heroku
 
 ### Project Plan & Design process
 
-> Discuss how Agile methodology is being implemented in your project. Describe the way tasks are allocated and tracked in your project. Project Timeline. Provide an overview and description of your Source control process.
+Please note that since this project was undertaken as a solo attempt, the development process did not exhibit the usual Git collaboration history, stand-up, agile or Kanban tracking as per the agile development methodology.
+
+> Discuss how Agile methodology is being implemented in your project. Describe the way tasks are allocated and tracked in your project. Project Timeline.
+
+| Testing                                                                                               |                                              Logging issues                                               |
+| ----------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/rachelwong/music/blob/master/readme_assets/screen_test.png" width="400"> | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/thingsAttempted.png" width="400"> |
+
+> Provide an overview and description of your Source control process.
 
 ---
 
@@ -159,7 +171,11 @@ Heroku
 
 > Provide Wireframes for your App. Provide User Stories for your App
 
----
+[See wireframes and workflows here](readme_assets/user_stories.md)
+
+| Tables   |      Are      |   Cool |
+| -------- | :-----------: | -----: |
+| col 3 is | right-aligned | \$1600 |
 
 ### Testing
 
@@ -177,10 +193,10 @@ Heroku
 
 Rails by nature is database agnostic and will default to MySQL. However, PostgreSQL has been chosen for "Pre:Loved" due to the following:
 
-- The deployment platform defined in the course is [Heroku](https://heroku.com), which uses PostgreSQL natively. While the [ClearDB add-on](https://devcenter.heroku.com/articles/cleardb) is available as a database-as-a-service to bridge MySQL to Heroku, implementing ClearDB will bring a additional learning commitment unachievable to the compressed two-week development cycle for a single, inexperienced developer.
-- ACID (Atomicity, Consistency, Isolation, Durability) properties of PostgreSQL ensures no data is lost or miscommunicated across the system in the event of failure. This is particulary attractive as "Pre:loved" application's database holds private personal details of schools and individuals (addresses, emails, names).
+- The deployment platform defined in the course is [Heroku](https://heroku.com), which uses PostgreSQL natively. While the [ClearDB add-on](https://devcenter.heroku.com/articles/cleardb) is available as a database-as-a-service to bridge MySQL to Heroku, implementing ClearDB will bring a additional learning commitment unachievable to an inexperienced developer flying solo in a compressed two-week timeframe.
+- ACID (Atomicity, Consistency, Isolation, Durability) properties of PostgreSQL ensures no data is lost or miscommunicated across the system in the event of failure. This is particulary attractive as the application database holds private personal details of schools and individuals (addresses, emails, names).
 - It's free and open source. Low start-up seeding required.
-- CRUD performances and data validation are important priorities should "Pre:Loved" gain traction with the school community. The database may be required to handle growing amounts of private user information, listings data, and all its accompanying security concerns. MySQL is well suited for straightforward data transactions. However, PostgreSQL will _future-proof_ the application for more complex query executions, faster data latency, read/write/retrieval performance optimisation and even open up avenues to business intelligence analytics.
+- CRUD performances and data validation are important priorities should Pre:Loved gain traction upon release in the real world. The database may then be required to handle growing amounts of private user information, listings data, with all its accompanying security concerns. MySQL is well suited for straightforward data transactions. However, PostgreSQL will _future-proof_ the application for more complex SQL query executions, faster data latency, read/write/retrieval performance optimisation and even open up avenues to business intelligence analytics.
 
   > Identify and describe the production database setup (i.e. postgres instance).\*
 
