@@ -26,7 +26,7 @@ On the other side of the equation, the key challenge for the developer to solve 
 
 This assignment therefore seeks to improve access to quality musical instrument in Queensland schools by building \*a walled, two-sided marketplace "Pre:Loved" that allows verified private owners of second-hand musical instruments (i.e. parents of children who may have outgrown their instruments) to sell to primary and high schools at affordable prices.\*
 
-The only comparable Australian marketplace that seeks to achieve a similar aim is [Gift of Music](https://www.giftofmusic.org.au/), a non-profit drive helping rural and disadvantaged children gain access to musical instruments through volunteer donations. There appears to be no public listings of instruments available, operating only via private correspondence in their contact form.
+The only comparable Australian marketplace that seeks to achieve a similar aim is [Gift of Music](https://www.giftofmusic.org.au/), a non-profit drive helping rural and disadvantaged children gain access to musical instruments through volunteer donations. There appears to be no public listings of instruments available, operating only via private correspondence submitted to their contact form.
 
 <img src="https://github.com/rachelwong/music/blob/master/readme_assets/giftOfMusic.png" width="500">
 
@@ -47,19 +47,22 @@ Due to lack of coding experience and knowledge on Ruby-on-Rails, the developer o
 
 - User account creation and authentication
 - User can CRUD own profile, including uploading an avatar image
+- Each listing can be part of an index (full list) or individual list
 - User can CRUD listings
-- User can view/manage a list of their own listings from the profile
-- Basic keyword Search function through all listings
-- Listings are sorted by instrument type
+- There are two types of users: `@user` (seller - to list items only) and `@user.is_school` (school - to buy items only)
+- `@user` (seller) can view/manage a list of their own listings from the profile
+- Basic keyword Search function on the home page can search through listings via the `description` field
+- Listings are sorted by `instrument_type` attribute on the home page
 - Images (avatar, listing photos) can be uploaded onto Cloudinary
--
+- Listings can be purchased individually via Stripe
 
 ---
 
 ### Unresolved Problems
 
 - Search bar on the home page is case sensitive, and only searches for words within the `description` field of the listing.
-- Alert messages
+- Order cart (with add, remove item) was not successful
+- UI Alert messages for when a listing has been created, updated or deleted
 - Contact us form failed
 
 Overall the codebase is of amateur-quality.
@@ -84,8 +87,7 @@ Some partials and centralised styling in `applications.scss` have been used in a
 - header, footer
 - forms
 - the card used to display each listing.
-
-However, the quality of the codebase and clunky user experience (i.e. Updating account authentication is nested a second level down from Editing Profile details) nonetheless demonstrated the haphazard _learning-on-the-fly_ process for the solo developer. Maintaining the application as it is currently submitted will inevitably accrue compounding technical debt.
+  However, the quality of the codebase and clunky user experience (i.e. Updating account authentication is nested a second level down from Editing Profile details) nonetheless demonstrated the haphazard _learning-on-the-fly_ process for the solo developer. Maintaining the application as it is currently submitted will inevitably accrue compounding technical debt.
 
 ---
 
@@ -96,7 +98,6 @@ However, the quality of the codebase and clunky user experience (i.e. Updating a
 - Use Rolify to define `:admin` role and privileges (CRUD all listings)
 - Add a sorting category for instrument's current location
 - Add a favourites function to each listing so that school account holders can also view a "Wishlist"
-- Implement an order cart with add and remove item function. The final amount will be processed by Stripe.
 - Implement an "order received" notification to the site owner's email address for paper-trail
 
 ---
@@ -107,24 +108,38 @@ However, the quality of the codebase and clunky user experience (i.e. Updating a
 
 ### Tech Stack
 
+> Identify and describe the software to be used in your App.
+
 - HTML, CSS#, SCSS for visual styling
 - Heroku Deployment
 
-> Identify and describe the software to be used in your App. Describe the network infrastructure the App may be based on.Detail any third party services that your App will use.
+> Describe the network infrastructure the App may be based on.
+
+> Detail any third party services that your App will use.
+
+Cloudinary
+
+Google Fonts
+
+Stripe
+
+Heroku
 
 #### Gem Dependencies
 
 | Gem                                                                                         | What I achieved with it                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Devise](https://github.com/plataformatec/devise)                                           | User authentication (log-in, log-out, edit profile) for `@seller` and `@user` user types                                                                                   |
+| [Devise](https://github.com/plataformatec/devise)                                           | User authentication (log-in, log-out, edit profile) for `@seller` and `@user.is_school` user types                                                                         |
 | [Dotenv 2.1.1](https://rubygems.org/gems/dotenv-rails/versions/2.1.1)                       | Installed to load environment variables from .env in test and development environments.                                                                                    |
-| [Kaminari](https://github.com/kaminari/kaminari)                                            | Page paginatio for "View All Listings" and Search results pages                                                                                                            |
+| [Kaminari](https://github.com/kaminari/kaminari)                                            | Pagination for "View All Listings" and Search results pages                                                                                                                |
 | [Cloudinary](https://github.com/cloudinary/cloudinary_gem)                                  | Works with activestorage-cloudinary-service gem to configure the heroku app with an account on Cloudinary to host images and file uploads                                  |
 | [Figaro](https://github.com/laserlemon/figaro)                                              | Implemented with the original intention to hide sensitive credentials such as private API keys for Stripe and Cloudinary. In the end, opted for using `.env` file instead. |
 | [Stripe](https://github.com/stripe/stripe-ruby)                                             | Implemented a single-item purchase transaction. Fully deployed on heroku.                                                                                                  |
 | [activestorage-cloudinary-service](https://github.com/0sc/activestorage-cloudinary-service) | Works with Cloudinary gem to configure the heroku app with an account on Cloudinary to host images and file uploads                                                        |
 
-### Structure of App
+### Structure of Application
+
+> Describe (in general terms) the data structure of marketplace apps that are similar to your own (e.g. eBay, Airbnb).
 
 > Describe the architecture of your App. Explain the different high-level components (abstractions) in your App.
 
@@ -152,8 +167,6 @@ However, the quality of the codebase and clunky user experience (i.e. Updating a
 
 ### Database Structure Entity Relationship Diagrams
 
-> Describe (in general terms) the data structure of marketplace apps that are similar to your own (e.g. eBay, Airbnb).
-
 > Discuss the database relations to be implemented. Describe your project’s models in terms of the relationships (active record associations) they have with each other.
 
 > Provide your database schema design.
@@ -165,7 +178,7 @@ However, the quality of the codebase and clunky user experience (i.e. Updating a
 Rails by nature is database agnostic and will default to MySQL. However, PostgreSQL has been chosen for "Pre:Loved" due to the following:
 
 - The deployment platform defined in the course is [Heroku](https://heroku.com), which uses PostgreSQL natively. While the [ClearDB add-on](https://devcenter.heroku.com/articles/cleardb) is available as a database-as-a-service to bridge MySQL to Heroku, implementing ClearDB will bring a additional learning commitment unachievable to the compressed two-week development cycle for a single, inexperienced developer.
-- ACID (Atomicity, Consistency, Isolation, Durability) properties of PostgreSQL ensures no data is lost or miscommunicated across the system in the event of failure. This is particulary attractive as this application's database holds private personal details of schools and private citizens (addresses, emails, names).
+- ACID (Atomicity, Consistency, Isolation, Durability) properties of PostgreSQL ensures no data is lost or miscommunicated across the system in the event of failure. This is particulary attractive as "Pre:loved" application's database holds private personal details of schools and individuals (addresses, emails, names).
 - It's free and open source. Low start-up seeding required.
 - CRUD performances and data validation are important priorities should "Pre:Loved" gain traction with the school community. The database may be required to handle growing amounts of private user information, listings data, and all its accompanying security concerns. MySQL is well suited for straightforward data transactions. However, PostgreSQL will _future-proof_ the application for more complex query executions, faster data latency, read/write/retrieval performance optimisation and even open up avenues to business intelligence analytics.
 
@@ -173,7 +186,11 @@ Rails by nature is database agnostic and will default to MySQL. However, Postgre
 
 ### Security
 
-> Discuss and analyse requirements related to information system security. Discuss methods you will use to protect information and data.
+> Discuss and analyse requirements related to information system security.
+
+> Discuss methods you will use to protect information and data.
+
+The Figaro gem was installed but never used. It serves a similar function to .env, which generates instead an `appliation˘
 
 > Research what your legal obligations are in relation to handling user data.
 
@@ -187,15 +204,7 @@ The developer acknowledges the many open-source resources used in the project, w
 | --------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------: |
 | [Undraw](https://undraw.co/illustrations)     |               Vector illustrations used in user interface messages (404 errors, success/cancel purchase message)                |
 | [Burst](https://burst.shopify.com)            |                     High quality photographs used as banner and as decorative elements throughout the site.                     |
-| [Google Fonts](https://fonts.google.com)      |                 Gugi and Robot have been used as typefaces for the application logo and body-text respectively.                 |
+| [Google Fonts](https://fonts.google.com)      |             Gugi and Roboto typefaces have been used as typefaces for the logo identity and body-text respectively.             |
 | [Bootstrap styles](https://getbootstrap.com/) | The visual appearance of the forms and site are all derivative of Bootstrap, which helped to cut development time and workload. |
 
 Images of instruments are taken randomly from Google search. They have been used to demonstrate intent and operation of the application and can be removed upon notification.
-
-```
-
-```
-
-```
-
-```
