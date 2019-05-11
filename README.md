@@ -99,6 +99,8 @@ Solutions to problems are naive, repetitive (not DRY) - at times near tautologic
 <% end %>
 ```
 
+This repeating control structure could be circumvented by setting down user roles ([rolify](https://github.com/RolifyCommunity/rolify)) to better use a base/super `User` model to differentiate between the types of users, instead of relying on a checkbox boolean value `is_school`.
+
 Partials and centralised styling in `applications.scss` have been used in an attempt to consolidate and centralise some elements such as header, footer, forms, the card used to display each listing. Nonetheless, the quality of the codebase and clunky user experience (i.e. Updating account authentication is nested a second level down from Editing Profile details) demonstrated the ham-fisted coding process of the solo developer. Maintaining the application as it is currently submitted will inevitably accrue compounding technical debt.
 
 ---
@@ -153,6 +155,7 @@ These are features not yet attempted.
 | [Figaro](https://github.com/laserlemon/figaro)                                              | Implemented with the original intention to hide sensitive credentials such as private API keys for Stripe and Cloudinary. In the end, opted for using `.env` file instead. |
 | [Stripe](https://github.com/stripe/stripe-ruby)                                             | Implemented a single-item purchase transaction. Fully deployed on heroku.                                                                                                  |
 | [activestorage-cloudinary-service](https://github.com/0sc/activestorage-cloudinary-service) | Works with Cloudinary gem to configure the heroku app with an account on Cloudinary to host images and file uploads                                                        |
+| [Rspec-rails](https://github.com/rspec/rspec-rails)                                         | For unit-testing                                                                                                                                                           |
 
 ### Structure of Application
 
@@ -164,6 +167,20 @@ These are features not yet attempted.
 
 > Instructions on how to setup, configure and use your App.
 
+First fork and clone the repo into your local machine.
+
+```
+git clone <SSH link from Github>
+```
+
+Make sure you have bundler install. Run bundler to install gem dependencies locally.
+
+```
+bundle install
+```
+
+This application is configured to a specific Cloudinary and Stripe account. So be aware that those functionalities may be affected on your local machine. IF you need to configure those functions to your own settings, make the necessary changes to the Cloudinary and API keys in the `.env` and `orders_controller.html.erb` (stripe public key). If deployment is required, please config your heroku account accordingly in the CLI `heroku config:set STRIPE_API_KEY=whateveryourkeyis`.
+
 ---
 
 ### Project Plan & Design process
@@ -172,25 +189,27 @@ Please note that since this project was undertaken as a solo attempt, the develo
 
 > Discuss how Agile methodology is being implemented in your project.
 
-Althought this was a solo effort, a fast, responsive development cycle was used to manage learning and building concurrently. Tasks are first created on Trello (please see below section on how tasks are created)
+Althought this was a solo effort, a fast, responsive development cycle was used to manage learning and building concurrently. Tasks are first created on Trello (please see below section on how tasks are created), prototypes are pencilled out. The developer took a visual route to set down the look and feel of static pages. Planned functionalities such as sign up buttons on the nav bar are built into the static pages as mock-up placeholders. With the foundation visual look of a product in place, a divide-and-conquer approach was taken to then build each individual trello task, for example, build a sign up form, or an brass instrument sorting page.
 
 To prevent the master codebase from being contaminated, the repo was cloned to create a testing sandbox environment mirroring a latest build version. In this testing environment (nicknamed 'Post:Hate'), the developer can attempt building functionalities from following tutorials online, run validation test using different seeding data. It is in the testing sandbox environment that the developer try out unfamiliar ideas and conduct **unit testing** before progressing to actually building in the development version.
 
-Likewise, for some self-contained functionalities such as building a contact form, a separate repository is created to test out ideas and conduct unit testing.
+Likewise, for some self-contained functionalities such as building a contact form, a [separate repository](https://github.com/rachelwong/contact-rails) is created to test out ideas and conduct unit testing.
 
-The first week of the development was devoted entirely to gain some familiarity with developing using the Rails framework by doing as many online tutorials and building multiple small projects. This meant that learning and building had to occur in parallel within a compressed build timeframe of one week. The development cycle therefore was an exercise in maintaining a clear sanitisation line between the development environment and the testing environemnt.
+The first week of the development was devoted entirely to gain some familiarity with developing using the Rails framework by doing as many online tutorials, building multiple small projects and redoing classe xercises. This meant that learning and building had to occur in parallel within a compressed build timeframe of one week. The development cycle therefore was an exercise in maintaining a clear sanitisation line between the development environment and the testing environemnt.
 
 | Testing Sandbox Environment                                                                               |                                         Example of Logging issues                                         |
 | --------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------: |
 | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/screenshot_test.png" width="400"> | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/thingsAttempted.png" width="400"> |
 
-Once a feature has been tested through the common through the edge case scenarios on localhost, it is immediately released into production (heroku). This **Continuous Deployment** approach is highly suitable to the solo effort in ensuring that
+Once a feature has been rigorously tested through the common through the corner case scenarios on the local machine, it is immediately released into production (heroku). This **Continuous Deployment** approach is highly suitable to the solo project in ensuring that
 
-1. there will always be an MVP in prod
+1. there will always be an MVP in production
 2. effectively project manage a large workload operating with a high degree of ambiguity (unfamiliar frameworks and third party services)
 3. ensure new features are frequently delivered to the end user.
 
 Once released, the task is then marked complete on trello, and the cycle begins for the next user story on trello.
+
+Any persistent issues that does not hamper the overall performance is noted in a running sheet (as above) to revisit down the track. This ensures that time is managed evenly across attempting all the MVP features of the application.
 
 > Describe the way tasks are allocated and tracked in your project.
 
@@ -227,7 +246,7 @@ A likely flow of events for source control could be:
 
 > Provide Wireframes for your App.
 
-[See wireframes here](readme_assets/user_stories.md)
+[See wireframes here](readme_assets/wireframes.md)
 
 ### Testing
 
@@ -235,7 +254,9 @@ A likely flow of events for source control could be:
 
 ### Database Structure Entity Relationship Diagrams
 
-> Discuss the database relations to be implemented. Describe your project’s models in terms of the relationships (active record associations) they have with each other.
+> Discuss the database relations to be implemented.
+
+> Describe your project’s models in terms of the relationships (active record associations) they have with each other.
 
 <img src="https://github.com/rachelwong/music/blob/master/readme_assets/model_schema.png" width="700" />
 
@@ -252,7 +273,15 @@ Rails by nature is database agnostic and will default to MySQL. However, **Postg
 - It's free and open source. Low start-up seeding required.
 - CRUD performances and data validation are important priorities should Pre:Loved gain traction upon release in the real world. The database may then be required to handle growing amounts of private user information, listings data, with all its accompanying security concerns. MySQL is well suited for straightforward data transactions. However, PostgreSQL will _future-proof_ the application for more complex SQL query executions, faster data latency, read/write/retrieval performance optimisation and even open up avenues to business intelligence analytics.
 
-> Identify and describe the production database setup (i.e. postgres instance).\*
+> Identify and describe the production database setup (i.e. postgres instance).
+
+The database consists of the `Users` and `Listings` tables.
+
+At present, the User table essentially only accounts for one type of user, despite in operation there are two subtypes (sellers and school buyers). The User table contains account authentication credentials (password, username), as well as profile details and the checkbox boolean value `is_school`. When `is_school` is ticked upon account creation, schematically it creates a user account (school buyer user type) which will only have access to buy listing (stripe transaction). When `is_school` is false (unticked). This differentiation is handled by control structures in the views and controllers (see Unresolved Problems) rather than through separate User Devise models. This arrangement creates more development work and unit testing load to ensure that the separation of concerns and functions between the two user types as denoted by `is_school` are kept consistent throughout the entire application. It is an imperfect solution to solve a working problem due to lack of understanding and application of database schematic designs and Rails.
+
+The Listing table references a User as a foreign key to demonstrate the one-to-many relationships between User and Listings.
+
+An active storage table allows the attachment of product images to Listing records and avatar images to User records.
 
 ### Security
 
