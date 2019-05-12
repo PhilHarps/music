@@ -102,6 +102,8 @@ Solutions to problems are naive, repetitive (not DRY) - at times near tautologic
 
 This repeating control structure could be circumvented by setting down user roles ([rolify](https://github.com/RolifyCommunity/rolify)) to better use a base/super `User` model to differentiate between the types of users, instead of relying on a checkbox boolean value `is_school`.
 
+The Stripe payment transaction feature was also not successfully implemented and had to default to following the code-along example in class.
+
 Partials and centralised styling in `applications.scss` have been used in an attempt to consolidate and centralise some elements such as header, footer, forms, the card used to display each listing. Nonetheless, the quality of the codebase and clunky user experience (i.e. Updating account authentication is nested a second level down from Editing Profile details) demonstrated the ham-fisted coding process of the solo developer. Maintaining the application as it is currently submitted will inevitably accrue compounding technical debt.
 
 ---
@@ -131,12 +133,20 @@ These are features not yet attempted.
 > Identify and describe the software to be used in your App.
 
 - HTML, CSS3, SCSS for visual styling
+- GitHub for version control
 - Ruby-on-Rails for development
 - RSpec for testing
+- Active Storage native to rails to handle file uploads and downloads
 - Heroku for deployment
 - Rails Gems (see below) for extending functionalities beyond MVC
 
 > Describe the network infrastructure the App may be based on.
+
+The hosting provider is Heroku for this application.
+
+Upon deployment, the codebase is run on a virtual machine known as 'dyno'. More dynos available on an application can handle more HTTP requests, especially for applications expecting high traffic. When an application is deployed and allocated to a dyno, the heroku router can receive and pass through HTTP requests from the user to the server. If the applciation owner is on a free plan, there is a certain restriction to amount of RAM storage and un-billable hours to handle HTTP requests to dyno.
+
+Due to resource constraints in this assignment, more time is needed to absorb the content in the [Heroku documentation](https://devcenter.heroku.com/articles/http-routing) and to clearly understand how Heroku actually works.
 
 > Detail any third party services that your App will use.
 
@@ -163,6 +173,17 @@ These are features not yet attempted.
 > Describe (in general terms) the data structure of marketplace apps that are similar to your own (e.g. eBay, Airbnb).
 
 > Describe the architecture of your App. Explain the different high-level components (abstractions) in your App.
+
+**Model**
+The models used in Pre:loved reflects typical ecommerce business logic. A User model holds personal profile information. Depending on whether `is_school` checkbox is ticked upon sign-up, the account can be further divided into a **school (buyer)** or a
+
+The Order model is still in development but should store the details of each shopping cart session (numebr of listings, user_id of the user signed in).
+
+**Controllers**
+
+**Views**
+
+The MVC separation of concerns was demonstrated by data validation handled within the models. Page redirection and ferrying form-submitted data happened in the controllers. And the views display different functions based on the type of user currently logged in.
 
 ### Instructions on Local Configuration
 
@@ -195,6 +216,8 @@ Althought this was a solo effort, a fast, responsive development cycle was used 
 To prevent the master codebase from being contaminated, the repo was cloned to create a testing sandbox environment mirroring a latest build version. In this testing environment (nicknamed 'Post:Hate'), the developer can attempt building functionalities from following tutorials online, run validation test using different seeding data. It is in the testing sandbox environment that the developer try out unfamiliar ideas and conduct **unit testing** before progressing to actually building in the development version.
 
 Likewise, for some self-contained functionalities such as building a contact form, a [separate repository](https://github.com/rachelwong/contact-rails) is created to test out ideas and conduct unit testing.
+
+<img src="https://github.com/rachelwong/music/blob/master/readme_assets/timeline.png" width="800">
 
 The first week of the development was devoted entirely to gain some familiarity with developing using the Rails framework by doing as many online tutorials, building multiple small projects and redoing classe xercises. This meant that learning and building had to occur in parallel within a compressed build timeframe of one week. The development cycle therefore was an exercise in maintaining a clear sanitisation line between the development environment and the testing environemnt.
 
@@ -257,7 +280,21 @@ A likely flow of events for feature-branching workflow could be:
 
 > Discuss the database relations to be implemented.
 
+A 'User' is connected to each `listing` via `user_id`. A `User` can have many listings. A `User` can be a school-buyer (`is_school? = true`) or a seller (`is_school? = false`). Both types use the same `user` model.
+
+If implemented correctly, because each listing is unique (only one violin of that kind), a `listing` has a one-to-one relationship with an `order` as each listing is unique and only one `user` can make a purchase of the same `listing` at any point in time. Each `order` will have foreigns keys of `user_id` and `listing_id`. `Order` is almost like a joining table. IN a normal ecommerce scenario like Etsy where you can buy more than one of each of listing, the relationship between listing and order would be many to many.
+
+For details please see below.
+
 > Describe your project’s models in terms of the relationships (active record associations) they have with each other.
+
+A `User` can have many `listing` records (i.e. a person can list many instruments for sale). However, each `listing` can only have one `user` (i.e. each instrument listed belongs to only one seller, not two). They are connected by the foreign key `user_id`.
+
+A `User` can have one avatar through the Active Storage tables.
+
+A `Listing` can have one image through the Active Storage tables.
+
+There is currently no `order` model on the project.
 
 <img src="https://github.com/rachelwong/music/blob/master/readme_assets/model_schema.png" width="700" />
 
@@ -321,7 +358,7 @@ In terms of securing the system for users:
 - Collect data from users on a need-to-know basis
 - All users have the ability to purge the database of their own personal details
 - Heroku has built-in rollback functions, physical and logical backups, SSL to protect sensitive data between user and server
-- For future, implement the [audited gem](https://github.com/collectiveidea/audited)
+- For future, implement the [audited gem](https://github.com/collectiveidea/audited) to prevent lossy data
 - There are no admin panels currently installed on the project. However to protect it from obvious attacks, it may be prudent to give the admin URL a differnet name rather using the obvious www.preloved.com/admin
 - The project uses Devise as a way to manage user authentication. CAPTCHAS could be added in future to further protect the user when editing details such as passwords on the database.
 - REthink the display of seller contact information even after user account authentication and instead use a contact form, or an intermediary service like a messenging chat bot.
