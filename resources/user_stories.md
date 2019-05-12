@@ -17,3 +17,7 @@
 - **"Mary", Retiree**: Heard about the initiative through Salvation Army and wanting to see what kinds of instruments are being traded amongst schools. She may or may not have contacts who may have unused instruments in storage.
 - **"Harry", the Airport manager**: Looking to get rid of musical instruments in the Lost Property section at the Brisbane Domestic Airport.
 - **"Kyle", shop owner of _Music Express_**: Several instruments have been left damaged by customers in the shop. He is looking to sell the instruments at cost to make room for new incoming stock.
+
+## Draft Workflow
+
+<img src="https://github.com/rachelwong/music/blob/master/resources/workflow.png" width="600" />
