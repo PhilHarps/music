@@ -5,9 +5,13 @@
 <%= form_with model: current_user, local: true do |f| %>
   <div class="form-group row">
     <div class="col-sm-3 col-form-label">
+
+    <%# If the signed in user has an avatar, then display it %>
       <% if current_user.avatar.attached? %>
         <%= image_tag current_user.avatar, class: "avatar" %>
       <% else %>
+
+      <%# if no avatar is attached to the user, placeholder text until data validation inputted %>
       <p style="text-align:center;">Insert Avatar</p>
       <% end %>
     </div>

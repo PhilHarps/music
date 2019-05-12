@@ -1,6 +1,8 @@
 <br>
 <div class="container">
 <div class="search-page">
+
+<%# if there are search results, display the full count %>
   <% if @listings.exists? %>
     <h1>Top Search Results</h1> 
     <p style="font-style:italic;">There are <%= pluralize(@listings.count, "Pre:Loved instrument")  %> matches.</p> 
@@ -13,6 +15,8 @@
       <%= image_tag("undraw-error.png", width: "70%") %>
     </div>
   <% end %>
+
+  <%# display any search results here %>
   <div class="card-columns">
     <% @listings.each do |listing| %>
     <div class="card">
