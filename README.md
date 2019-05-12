@@ -340,7 +340,11 @@ There is currently no `order` model on the project.
 
 > Provide your database schema design.
 
+Initial Design
 <img src="https://github.com/rachelwong/music/blob/master/resources/databaseSchema.png" width="800" />
+
+Revised Design
+<img src="https://github.com/rachelwong/music/blob/master/resources/ERD_updated.png" width="800" />
 
 > Identify the database to be used in your App and provide a justification for your choice.
 
