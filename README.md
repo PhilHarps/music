@@ -241,7 +241,7 @@ Make sure you have bundler install. Run bundler to install gem dependencies loca
 bundle install
 ```
 
-This application is configured to a specific Cloudinary and Stripe account. So be aware that those functionalities may be affected on your local machine. IF you need to configure those functions to your own settings, make the necessary changes to the Cloudinary and API keys in the `.env` and `orders_controller.html.erb` (stripe public key). If deployment is required, please config your heroku account accordingly in the CLI `heroku config:set STRIPE_API_KEY=whateveryourkeyis`.
+This application is configured to a specific Cloudinary and Stripe account. So be aware that those functionalities may be affected on your local machine. IF you need to configure those functions to your own settings, make the necessary changes to the Cloudinary and API keys in the `.env` and `orders_controller.html.erb` (stripe public key). If deployment is required, please config your heroku account accordingly in the CLI `heroku config:set` with all the credentials as needed (Stripe, PG database, Cloudinary).
 
 ---
 
@@ -315,6 +315,10 @@ A likely flow of events for feature-branching workflow could be:
 ### Testing
 
 > Provide an overview and description of your Testing process.
+
+Code testing and validation checking were done iteratively as each new small feature is added to the application. Unfortunately timing meant custom tests could not be explored to Rspec-Rails. Below is a sample of a running debugging report with test scenarios and corner cases. This is a manual process and any persistent errors (highlighted) was added as a Trello board as a card.
+
+<img src="https://github.com/rachelwong/music/blob/master/resources/testing.png" width="600" />
 
 ### Database Structure Entity Relationship Diagrams
 

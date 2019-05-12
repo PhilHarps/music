@@ -7,4 +7,17 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   validates :name, :address, :email, :city, :state, presence: true
+
+  # Added 12 May 2019 to validate 
+  validate :avatar_presence
+  validate :correct_avatar
+    def avatar_presence
+      errors.add(:avatar, "can't be blank") unless avatar.attached?
+    end
+
+    def correct_avatar
+      if avatar.attached? && !avatar.content_type.in?(%w(image/jpeg image/png))
+            errors.add(:avatar, 'must be a JPEG or PNG file.')
+      end
+    end
 end
