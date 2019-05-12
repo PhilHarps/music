@@ -1,12 +1,12 @@
 ## User Stories
 
-| User > Seller                                                                                           |                                              User > School                                              |
-| ------------------------------------------------------------------------------------------------------- | :-----------------------------------------------------------------------------------------------------: |
-| <img src="https://github.com/rachelwong/music/blob/master/readme_assets/user_seller.png" width="300" /> | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/user_school.png" width="300" /> |
+| User > Seller                                                                                       |                                            User > School                                            |
+| --------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/rachelwong/music/blob/master/resources/user_seller.png" width="300" /> | <img src="https://github.com/rachelwong/music/blob/master/resources/user_school.png" width="300" /> |
 
-| Unlogged in Public user                                                                                 |                                              Moderator                                               |
-| ------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------: |
-| <img src="https://github.com/rachelwong/music/blob/master/readme_assets/user_public.png" width="300" /> | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/user_mod.png" width="300" /> |
+| Unlogged in Public user                                                                             |                                            Moderator                                             |
+| --------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/rachelwong/music/blob/master/resources/user_public.png" width="300" /> | <img src="https://github.com/rachelwong/music/blob/master/resources/user_mod.png" width="300" /> |
 
 ### Personas
 

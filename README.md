@@ -4,7 +4,7 @@ https://secret-mountain-45294.herokuapp.com/
 
 Codebase: https://github.com/rachelwong/music
 
-[Presentation](readme_assets/rails_presentation)
+[Presentation](resources/rails_presentation.pdf)
 
 ---
 
@@ -30,7 +30,7 @@ For Queensland schools to deliver quality musical education in the face of growi
 
 The only comparable Australian marketplace that seeks to achieve a similar aim is [Gift of Music](https://www.giftofmusic.org.au/), a non-profit drive helping rural and disadvantaged children gain access to musical instruments through volunteer donations. There appears to be no public listings of instruments available, operating only via private correspondence submitted to their contact form.
 
-<img src="https://github.com/rachelwong/music/blob/master/readme_assets/giftOfMusic.png" width="500">
+<img src="https://github.com/rachelwong/music/blob/master/resources/giftOfMusic.png" width="500">
 
 > Describe the project you will be conducting and how your App will address the needs.
 
@@ -129,7 +129,7 @@ These are features not yet attempted.
 
 ### Screenshots
 
-[See Screenshots here](readme_assets/screenshots.md)
+[See Screenshots here](resources/screenshots.md)
 
 ### Tech Stack
 
@@ -257,13 +257,13 @@ To prevent the master codebase from being contaminated, the repo was cloned to c
 
 Likewise, for some self-contained functionalities such as building a contact form, a [separate repository](https://github.com/rachelwong/contact-rails) is created to test out ideas and conduct unit testing.
 
-<img src="https://github.com/rachelwong/music/blob/master/readme_assets/timeline.png" width="800">
+<img src="https://github.com/rachelwong/music/blob/master/resources/timeline.png" width="800">
 
-The first week of the development was devoted entirely to gain some familiarity with developing using the Rails framework by doing as many online tutorials, building multiple small projects and redoing classe xercises. This meant that learning and building had to occur in parallel within a compressed build timeframe of one week. The development cycle therefore was an exercise in maintaining a clear sanitisation line between the development environment and the testing environemnt.
+The first week of the development was devoted entirely to learning Rails by doing as many online tutorials, building multiple small projects and redoing classe xercises. This meant that learning and building had to occur in parallel within a compressed build timeframe of one week. The development cycle therefore was an exercise in maintaining a clear sanitisation line between the development environment and the testing environemnt.
 
-| Testing Sandbox Environment                                                                               |                                         Example of Logging issues                                         |
-| --------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------: |
-| <img src="https://github.com/rachelwong/music/blob/master/readme_assets/screenshot_test.png" width="400"> | <img src="https://github.com/rachelwong/music/blob/master/readme_assets/thingsAttempted.png" width="400"> |
+| Testing Sandbox Environment                                                                           |                                       Example of Logging issues                                       |
+| ----------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/rachelwong/music/blob/master/resources/screenshot_test.png" width="400"> | <img src="https://github.com/rachelwong/music/blob/master/resources/thingsAttempted.png" width="400"> |
 
 Once a feature has been rigorously tested through the common through the corner case scenarios on the local machine, it is immediately released into production (heroku). This **Continuous Deployment** approach is highly suitable to the solo project in ensuring that
 
@@ -279,7 +279,7 @@ Any persistent issues that does not hamper the overall performance is noted in a
 
 [Trello](https://trello.com/b/FVqaST5Q/preloved-2nd-hand-music-instruments-for-school) board is used to log MVP requirements, extensible nice-to-have features, user stories and to track each item as it has been built.
 
-<img src="https://github.com/rachelwong/music/blob/master/readme_assets/trello2.png" width="600" />
+<img src="https://github.com/rachelwong/music/blob/master/resources/trello2.png" width="600" />
 
 From training with Thoughtworks at their [LevelUp program](https://levelup.thoughtworks.com/) earlier in 2019, each user story is conceptualised as an actionable scenario that involves a particular input, undergoing a transformational process resulting in an output being returned. Each of these stories could effectively be described as an action. And each action became a task on the trello board. The same process is repeated for when errors and bugs are found on the system, for example, one bug tracking was "User image upload cannot be validated to the correct file extension".
 
@@ -304,13 +304,13 @@ A likely flow of events for feature-branching workflow could be:
 
 > Provide User Stories for your App
 
-[See user stories and workflows here](readme_assets/user_stories.md)
+[See user stories and workflows here](resources/user_stories.md)
 
 ### Wireframes for your application
 
 > Provide Wireframes for your App.
 
-[See wireframes here](readme_assets/wireframes.md)
+[See wireframes here](resources/wireframes.md)
 
 ### Testing
 
@@ -336,11 +336,11 @@ A `Listing` can have one image through the Active Storage tables.
 
 There is currently no `order` model on the project.
 
-<img src="https://github.com/rachelwong/music/blob/master/readme_assets/model_schema.png" width="700" />
+<img src="https://github.com/rachelwong/music/blob/master/resources/model_schema.png" width="700" />
 
 > Provide your database schema design.
 
-<img src="https://github.com/rachelwong/music/blob/master/readme_assets/databaseSchema.png" width="800" />
+<img src="https://github.com/rachelwong/music/blob/master/resources/databaseSchema.png" width="800" />
 
 > Identify the database to be used in your App and provide a justification for your choice.
 
