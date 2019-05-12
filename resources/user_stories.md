@@ -20,4 +20,6 @@
 
 ## Draft Workflow
 
+_Might take some time to load_
+
 <img src="https://github.com/rachelwong/music/blob/master/resources/workflow.png" width="600" />
