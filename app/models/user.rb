@@ -11,10 +11,13 @@ class User < ApplicationRecord
   # Added 12 May 2019 to validate 
   validate :avatar_presence
   validate :correct_avatar
+
+  # check whether avatar exists
     def avatar_presence
       errors.add(:avatar, "can't be blank") unless avatar.attached?
     end
 
+    # check whether avatar file type is acceptable
     def correct_avatar
       if avatar.attached? && !avatar.content_type.in?(%w(image/jpeg image/png))
             errors.add(:avatar, 'must be a JPEG or PNG file.')

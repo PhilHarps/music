@@ -85,8 +85,13 @@ end
 - add purchased listing into the Purchase history of the school profile
 - when an account is first created and the avatar image is uploaded, the image does not appear in the user_path view. The user has to edit their profile and re-upload the avatar image.
 - INsufficient resources to attempt R-Spec testing
+- unable to change the label of the button from create to edit in `_form.html.erb` dynamically
 
-Overall the codebase is of amateur-quality.
+```
+        <%= f.button :submit, value: "#{f.object.new_record? ? 'Create' : 'Update'}" %>
+```
+
+The overall codebase is poor quality.
 
 Solutions to problems are naive, repetitive (not DRY) - at times near tautological - brought on by a lack of coding ability and a unclear (at best) understanding of developing on the Rails MVC framework. For example, to display different button functionalities for each type of user (un-logged in user, logged in user, logged in user who is also a school) on different parts of the website, the same control structure is repeated across multiple views.
 

@@ -20,6 +20,8 @@
       </li>
     </ul>
     <ul class="navbar-nav justify-content-end">
+
+    <%# If user IS SCHOOL, show "Your SChool Profile" on nav %>
       <% if user_signed_in? && current_user.is_school? == true %>
            <li class="nav-item">
             <%= link_to "Your School Profile", user_path(current_user.id), class: "nav-item-link" %>
@@ -28,6 +30,7 @@
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-item-link" %>
         </li>
         <% end %>
+        <%# if user IS NOT SCHOOL, show "your listing" on nav %>
     <% if user_signed_in? && current_user.is_school? == false %>
          <li class="nav-item">
             <%= link_to "Your Listings(#{current_user.listings.count})", user_path(current_user.id), class: "nav-item-link" %>
@@ -36,6 +39,7 @@
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-item-link" %>
         </li>
         <% end %>
+        <%# if not signed in, show sign up and sign in buttons %>
     <% if user_signed_in? == false %>
           <li class="nav-item">
             <%= link_to "Sign Up", new_user_registration_path, method: :get, class: "nav-item-link" %>

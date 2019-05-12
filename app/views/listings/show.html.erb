@@ -30,6 +30,8 @@
             <% end %>
                   <li class="list-group-item"><strong>Year:</strong> <%= @listing.year %></li>
                   <li class="list-group-item"><strong>Condition:</strong>
+
+                  <%# Display star rating system depending on condition count %>
                   <% if @listing.condition == 1 %>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star"></span>
@@ -62,11 +64,11 @@
                         <span class="fa fa-star checked"></span>
                   <% end %>
                   
-                  <!-- Button trigger modal -->
+                  <%# BUTTON TRIGGER MODAL %>
 <button type="button" data-toggle="modal" data-target="#exampleModalCenter" style="background: none;border:none;">
 (what's this?)</button>
 
-<!-- Modal -->
+<%# MODAL %>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
@@ -101,7 +103,7 @@
     </div>
   </div>
 </div>
-<!-- Button trigger modal -->
+<%# BUTTON TRIGGER MODAL ENDS %>
                   </li>
                   <li class="list-group-item"><strong>Type:</strong> <%= @listing.instrument_type %></li>
                   <li class="list-group-item"><strong>Item Listed on:</strong> <%= @listing.created_at.strftime("%d-%m-%Y") %></li>
@@ -117,6 +119,8 @@
       </div>
 <br>
       <h5>Seller Details</h5>
+
+      <%# if user is logged in as school or buyer, you can see seller details %>
       <% if user_signed_in? %>
       <ul class="list-group">
             <li class="list-group-item"><strong>Preloved by:</strong> <%= @listing.user.name %></li>
@@ -124,6 +128,7 @@
             <li class="list-group-item"><strong>Item location:</strong> <%= @listing.user.city %>, <%= @listing.user.state %></li>
       </ul>
       <% else %>
+      <%# if not logged in, prompt them to do so %>
             Please <%= link_to "log in", new_user_session_path, method: :get %> or <%= link_to "sign up", new_user_registration_path, method: :get %> for an account to view our seller details.
       <% end %>
       </div>

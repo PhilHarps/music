@@ -20,10 +20,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # defective create listing
-    # render "create"
-    # @listing.destroy
-    # redirect_to root_path
   end
 
   def cancel
