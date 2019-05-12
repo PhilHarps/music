@@ -147,7 +147,7 @@ These are features not yet attempted.
 
 The hosting provider is Heroku for this application.
 
-Upon deployment, the codebase is run on a virtual machine known as 'dyno'. More dynos available on an application can handle more HTTP requests, especially for applications expecting high traffic. When an application is deployed and allocated to a dyno, the heroku router can receive and pass through HTTP requests from the user to the server. If the applciation owner is on a free plan, there is a certain restriction to amount of RAM storage and un-billable hours to handle HTTP requests to dyno.
+Upon deployment, the codebase is run on a virtual machine known as 'dyno'. More dynos available on an application can handle more HTTP requests, especially for applications expecting high traffic. When an application is deployed and allocated to a dyno, the heroku router can receive and pass through HTTP requests from the user to the server. If the applciation owner is on a free plan, there is a certain restriction to amount of RAM storage and un-billable hours to handle HTTP requests to dyno. Upon deployment, a new instance of the Postgresql is also created along with any database migration and seeing as directed by the user. The heroku version of the databse is accessible via TCP/IP.
 
 Due to resource constraints in this assignment, more time is needed to absorb the content in the [Heroku documentation](https://devcenter.heroku.com/articles/http-routing) and to clearly understand how Heroku actually works.
 
@@ -169,22 +169,59 @@ Due to resource constraints in this assignment, more time is needed to absorb th
 | [Figaro](https://github.com/laserlemon/figaro)                                              | Implemented with the original intention to hide sensitive credentials such as private API keys for Stripe and Cloudinary. In the end, opted for using `.env` file instead. |
 | [Stripe](https://github.com/stripe/stripe-ruby)                                             | Implemented a single-item purchase transaction. Fully deployed on heroku.                                                                                                  |
 | [activestorage-cloudinary-service](https://github.com/0sc/activestorage-cloudinary-service) | Works with Cloudinary gem to configure the heroku app with an account on Cloudinary to host images and file uploads                                                        |
-| [Rspec-rails](https://github.com/rspec/rspec-rails)                                         | For unit-testing                                                                                                                                                           |
 
 ### Structure of Application
 
 > Describe (in general terms) the data structure of marketplace apps that are similar to your own (e.g. eBay, Airbnb).
 
+The application takes after popular 2-sided e-commerce marketplace such as [Etsy](http://www.etsy.com).
+However, Etsy will operate on a much higher level of complexity for the database schema
+
+- Users can be buyer and seller at the same time
+- User details could be stored in a customer table irrespective of seller or buyer
+- Users have many listings
+- Each listing will have one user
+- Each listing will have many orders (many to many)
+- Each order will have many listings (many to many)
+- A purchasing history model could be a joining table to merge date, buyer_id, seller_id, order_id, listing_id
+
+Pre:Loved operates on a much simplified and constrained data schema due to the lack of coding expertise.
+
 > Describe the architecture of your App. Explain the different high-level components (abstractions) in your App.
 
 **Model**
-The models used in Pre:loved reflects typical ecommerce business logic. A User model holds personal profile information. Depending on whether `is_school` checkbox is ticked upon sign-up, the account can be further divided into a **school (buyer)** or a
+The models used in Pre:loved reflects typical ecommerce business logic.
 
-The Order model is still in development but should store the details of each shopping cart session (numebr of listings, user_id of the user signed in).
+A `User` model holds personal profile information. Depending on whether `is_school` checkbox is ticked upon sign-up, the account can be further divided into a **school (buyer)** or a
+
+The `Order` model is still in development but should store the details of each shopping cart session (numebr of listings, user_id of the user signed in).
 
 **Controllers**
 
+`Users` controller is created from installing the Devise gem and is chiefy
+
+`Listings` controller is responsible for managing all the CRUD operations of listing records. It sanitizes and whitelists the user-inputted data from the create listing form and adds to the database. It also displays listings according to view all and sorting category.
+
+`Search` controller takes a user-inputted key word term from the search field and draws data from the `Listings` table using an SQL query statement. The final result is displayed in a separate page away from `listings` controller.
+
+`Orders` controller is a work in progress and primarily manages the stripe checkout operations of creating a transaction, passing database data to Stripe, and returning a success or cancel resulting page. Ideally this controller could be improved upon to include shoppping cart capabilities.
+
+`Pages` controller simply generates static pages on the website, including about us and contact us page. No interaction with the database is required.
+
+The `Home` controller simply sets up a root page for the hompage of the website.
+
 **Views**
+
+| View Folders |                                                                                                          Operation & Concerns                                                                                                          |
+| ------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Layout       |                                                  Manages the look and feel of common elements of the site including header, footer, site-wide partials scss, alert/notice UI elements                                                  |
+| Home         |                                               Styles the visual look of the home page only. Depending on the kind of user logged in (or not logged in), it renders a different nav bar.                                                |
+| Devise       | Handles the look and different forms for signing up an account, resetting password, editing log in details, forgetting password. These are automatically generated to handle user authentication screens once Devise gem is installed. |
+| Users        |                                                      Created two views to handle the editing of user profile (school or seller), and showing the user profile (school or seller).                                                      |
+| Search       |                           Creates a new page listing all results that matched the user input to the listings' description field. There is duplication as the look is essentially the same as listings view.                            |
+| Listings     |                                   A range of views that handle sorting of listing results by `instrument_type` category, and the view all listing. It also includes all the CRUD screens and forms.                                    |
+| Pages        |                                                                 These are simply static pages with no database operations for "About Us" and "Contact Us placeholder"                                                                  |
+| Orders       |          Manages the create a new order screen along with two destination static pages (Create/Success and Cancel) for when the stripe transaction is processed and the user is redirected back onto the heroku application.           |
 
 The MVC separation of concerns was demonstrated by data validation handled within the models. Page redirection and ferrying form-submitted data happened in the controllers. And the views display different functions based on the type of user currently logged in.
 
@@ -367,7 +404,7 @@ In terms of securing the system for users:
 - REthink the display of seller contact information even after user account authentication and instead use a contact form, or an intermediary service like a messenging chat bot.
 - Include a tick box when users sign up that they agree to give permission to retain and use of their data.
 - Encrypt backups of the Postgresql database
-- Encrypt personal information on the database with rotated unique keys, or use secured cloud services such as AWS with more ACL options.
+- Encrypt personal information on the database with rotating unique keys, or use secured cloud services such as AWS with more ACL options.
 
 By the nature of the website itself (music store), it is unlikely that the database will store critical, classified data such as personal health, financial details.
 
@@ -390,6 +427,8 @@ However, it is only in the business's best interests to take due diligence to op
 - to be notified when a company leaks your data.
 - to object to certain processing of your data.
 - to request your data as in a compatible format.
+
+It would also be prudent for the business to keep auditing logs of all codebase changes, database changes and transactions as evidence.
 
 ### Attribution
 
