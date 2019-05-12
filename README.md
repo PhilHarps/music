@@ -4,6 +4,8 @@ https://secret-mountain-45294.herokuapp.com/
 
 Codebase: https://github.com/rachelwong/music
 
+[Presentation](readme_assets/rails_presentation)
+
 ---
 
 ## Defining Purpose and Problem
@@ -82,6 +84,7 @@ end
 - delete the listing from the database when it has been successfully purchased (stripe transaction successful)
 - add purchased listing into the Purchase history of the school profile
 - when an account is first created and the avatar image is uploaded, the image does not appear in the user_path view. The user has to edit their profile and re-upload the avatar image.
+- INsufficient resources to attempt R-Spec testing
 
 Overall the codebase is of amateur-quality.
 
